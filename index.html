@@ -38,9 +38,15 @@
         content="https://flawsomekytaa.my.id/"
     >
 
-    <title>flawsomekytaa_byNR | Elegant Hijab</title>
+    <link
+        rel="canonical"
+        href="https://flawsomekytaa.my.id/"
+    >
 
-    <!-- Google Fonts -->
+    <title>
+        flawsomekytaa_byNR | Elegant Hijab
+    </title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -49,107 +55,118 @@
         rel="stylesheet"
     >
 
-    <!-- Font Awesome -->
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     >
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 </head>
 
 <body>
 
-    <!-- =========================
+    <!-- =====================================================
          TOP BAR
-    ========================== -->
+    ====================================================== -->
+
     <div class="top-bar">
         <p>
-            <i class="fa-solid fa-sparkles"></i>
             Free shipping untuk pembelian tertentu
         </p>
     </div>
 
 
-    <!-- =========================
+    <!-- =====================================================
          NAVBAR
-    ========================== -->
-    <header class="navbar" id="navbar">
+    ====================================================== -->
 
-        <div class="nav-container">
+    <header
+        class="navbar"
+        id="navbar"
+    >
+        <div class="container nav-container">
 
-            <a href="#home" class="logo">
-                <span>flawsomekytaa</span>
-                <small>_byNR</small>
+            <a
+                href="#home"
+                class="logo"
+            >
+                flawsomekytaa<span>_byNR</span>
             </a>
 
-            <nav class="desktop-nav" aria-label="Navigasi utama">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#collection" class="nav-link">Collection</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#contact" class="nav-link">Contact</a>
+            <nav class="desktop-nav">
+                <a href="#home">Home</a>
+                <a href="#collection">Collection</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
             </nav>
 
             <div class="nav-actions">
 
                 <button
-                    class="icon-button"
+                    class="nav-icon"
                     id="searchToggle"
                     type="button"
-                    aria-label="Buka pencarian"
+                    aria-label="Search"
                     aria-expanded="false"
                 >
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
 
                 <button
-                    class="icon-button cart-button"
+                    class="nav-icon cart-toggle"
                     id="cartToggle"
                     type="button"
-                    aria-label="Buka keranjang"
+                    aria-label="Shopping bag"
                     aria-expanded="false"
-                    aria-controls="cartSidebar"
                 >
                     <i class="fa-solid fa-bag-shopping"></i>
                     <span id="cartCount">0</span>
                 </button>
 
                 <button
-                    class="menu-toggle"
+                    class="nav-icon menu-toggle"
                     id="menuToggle"
                     type="button"
-                    aria-label="Buka menu"
+                    aria-label="Menu"
                     aria-expanded="false"
                 >
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                    <i class="fa-solid fa-bars"></i>
                 </button>
 
             </div>
 
         </div>
+    </header>
 
 
-        <!-- SEARCH -->
-        <div class="search-panel" id="searchPanel">
+    <!-- =====================================================
+         SEARCH PANEL
+    ====================================================== -->
 
-            <div class="search-inner">
+    <div
+        class="search-panel"
+        id="searchPanel"
+    >
+        <div class="container search-inner">
+
+            <div class="search-box">
 
                 <i class="fa-solid fa-magnifying-glass"></i>
 
                 <input
-                    type="search"
+                    type="text"
                     id="searchInput"
                     placeholder="Cari koleksi hijab..."
                     autocomplete="off"
                 >
 
                 <button
-                    id="searchClose"
                     type="button"
-                    aria-label="Tutup pencarian"
+                    id="searchClose"
+                    aria-label="Close search"
                 >
                     <i class="fa-solid fa-xmark"></i>
                 </button>
@@ -157,49 +174,53 @@
             </div>
 
         </div>
+    </div>
 
 
-        <!-- MOBILE MENU -->
-        <nav class="mobile-nav" id="mobileNav" aria-label="Menu mobile">
+    <!-- =====================================================
+         MOBILE NAV
+    ====================================================== -->
 
-            <a href="#home">Home</a>
-            <a href="#collection">Collection</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-
-        </nav>
-
-    </header>
+    <nav
+        class="mobile-nav"
+        id="mobileNav"
+    >
+        <a href="#home">Home</a>
+        <a href="#collection">Collection</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
 
 
     <main>
 
-        <!-- =========================
+        <!-- =================================================
              HERO
-        ========================== -->
-        <section class="hero" id="home">
+        ================================================== -->
 
-            <div class="hero-decoration hero-decoration-one"></div>
-            <div class="hero-decoration hero-decoration-two"></div>
+        <section
+            class="hero"
+            id="home"
+        >
 
-            <div class="hero-container">
+            <div class="container hero-grid">
 
                 <div class="hero-content">
 
-                    <span class="eyebrow">
-                        <i class="fa-solid fa-star"></i>
+                    <p class="eyebrow">
                         New Collection 2026
-                    </span>
+                    </p>
 
                     <h1>
-                        Elegance
-                        <span>in Every Fold.</span>
+                        Elegance in
+                        <span>Every Fold.</span>
                     </h1>
 
                     <p class="hero-description">
-                        Temukan koleksi hijab yang dirancang untuk
-                        melengkapi setiap momen dengan sentuhan
-                        elegan, nyaman, dan effortless.
+                        Temukan hijab pilihan dengan warna
+                        lembut, material nyaman, dan desain
+                        timeless yang mudah dipadukan
+                        untuk setiap momen.
                     </p>
 
                     <div class="hero-buttons">
@@ -214,7 +235,7 @@
 
                         <a
                             href="#about"
-                            class="btn btn-secondary"
+                            class="btn btn-outline"
                         >
                             Our Story
                         </a>
@@ -223,14 +244,12 @@
 
                     <div class="hero-mini-info">
 
-                        <div class="mini-info">
+                        <div>
                             <strong>06+</strong>
                             <span>Hijab Collection</span>
                         </div>
 
-                        <div class="mini-divider"></div>
-
-                        <div class="mini-info">
+                        <div>
                             <strong>100%</strong>
                             <span>Selected Quality</span>
                         </div>
@@ -242,36 +261,31 @@
 
                 <div class="hero-visual">
 
-                    <div class="hero-image-frame">
+                    <div class="hero-image-wrap">
 
                         <img
                             src="images/hijab9.jpeg"
-                            alt="Model menggunakan hijab dari flawsomekytaa_byNR"
-                            fetchpriority="high"
+                            alt="flawsomekytaa_byNR hijab collection"
                         >
-
-                        <div class="hero-image-overlay"></div>
-
-                        <div class="hero-floating-card">
-
-                            <span class="floating-label">
-                                The Edit
-                            </span>
-
-                            <strong>
-                                Soft & Timeless
-                            </strong>
-
-                            <span>
-                                Made for your everyday moments
-                            </span>
-
-                        </div>
 
                     </div>
 
-                    <div class="hero-round-text">
-                        <span>MODEST • ELEGANT • TIMELESS • </span>
+                    <div class="floating-card">
+
+                        <span>The Edit</span>
+
+                        <strong>
+                            Soft &amp; Timeless
+                        </strong>
+
+                        <small>
+                            Made for your everyday moments
+                        </small>
+
+                    </div>
+
+                    <div class="round-text">
+                        MODEST • ELEGANT • TIMELESS •
                     </div>
 
                 </div>
@@ -281,75 +295,60 @@
         </section>
 
 
-        <!-- =========================
+        <!-- =================================================
              MARQUEE
-        ========================== -->
-        <section class="marquee-section">
+        ================================================== -->
 
+        <div class="marquee">
             <div class="marquee-track">
-
                 <span>MODEST</span>
-                <i class="fa-solid fa-star"></i>
-
                 <span>MINIMAL</span>
-                <i class="fa-solid fa-star"></i>
-
                 <span>ELEGANT</span>
-                <i class="fa-solid fa-star"></i>
-
                 <span>COMFORTABLE</span>
-                <i class="fa-solid fa-star"></i>
-
                 <span>MODEST</span>
-                <i class="fa-solid fa-star"></i>
-
                 <span>MINIMAL</span>
-                <i class="fa-solid fa-star"></i>
-
                 <span>ELEGANT</span>
-                <i class="fa-solid fa-star"></i>
-
                 <span>COMFORTABLE</span>
-                <i class="fa-solid fa-star"></i>
-
             </div>
+        </div>
 
-        </section>
 
-
-        <!-- =========================
+        <!-- =================================================
              COLLECTION
-        ========================== -->
-        <section class="collection section" id="collection">
+        ================================================== -->
 
-            <div class="section-container">
+        <section
+            class="section collection-section"
+            id="collection"
+        >
+
+            <div class="container">
 
                 <div class="section-heading">
 
                     <div>
-
-                        <span class="section-label">
-                            Our Collection
-                        </span>
+                        <p class="eyebrow">
+                            The Collection
+                        </p>
 
                         <h2>
                             Find your
-                            <em>everyday</em>
-                            favorite.
+                            <span>everyday style.</span>
                         </h2>
-
                     </div>
 
-                    <p>
-                        Koleksi hijab dengan warna-warna lembut
-                        yang mudah dipadukan untuk berbagai gaya.
+                    <p class="section-description">
+                        Koleksi hijab yang dirancang untuk
+                        menemani penampilanmu dengan
+                        sederhana, nyaman, dan elegan.
                     </p>
 
                 </div>
 
 
                 <!-- FILTER -->
-                <div class="filter-wrapper">
+
+                <div class="collection-toolbar">
 
                     <div class="filter-buttons">
 
@@ -387,21 +386,30 @@
 
                     </div>
 
-                    <span class="collection-count">
+                    <span
+                        class="collection-count"
+                        id="collectionCount"
+                    >
                         06 Products
                     </span>
 
                 </div>
 
 
-                <!-- PRODUCTS -->
-                <div class="product-grid" id="productGrid">
+                <!-- PRODUCT GRID -->
+
+                <div
+                    class="product-grid"
+                    id="productGrid"
+                >
 
                     <!-- PRODUCT 1 -->
+
                     <article
                         class="product-card"
                         data-category="pashmina"
                         data-name="Pashmina Latte"
+                        data-product-id="1"
                     >
 
                         <div class="product-image">
@@ -410,7 +418,6 @@
                                 src="images/hijab1.jpeg"
                                 alt="Pashmina Latte"
                                 loading="lazy"
-                                decoding="async"
                             >
 
                             <span class="product-badge">
@@ -422,8 +429,7 @@
                                 type="button"
                                 data-product-id="1"
                             >
-                                <i class="fa-solid fa-plus"></i>
-                                Add to Bag
+                                Quick Add
                             </button>
 
                         </div>
@@ -440,7 +446,7 @@
                                 </h3>
                             </div>
 
-                            <strong class="product-price">
+                            <strong>
                                 Rp59.000
                             </strong>
 
@@ -450,10 +456,12 @@
 
 
                     <!-- PRODUCT 2 -->
+
                     <article
                         class="product-card"
                         data-category="pashmina"
                         data-name="Pashmina Sand"
+                        data-product-id="2"
                     >
 
                         <div class="product-image">
@@ -462,7 +470,6 @@
                                 src="images/hijab2.jpeg"
                                 alt="Pashmina Sand"
                                 loading="lazy"
-                                decoding="async"
                             >
 
                             <span class="product-badge">
@@ -474,8 +481,7 @@
                                 type="button"
                                 data-product-id="2"
                             >
-                                <i class="fa-solid fa-plus"></i>
-                                Add to Bag
+                                Quick Add
                             </button>
 
                         </div>
@@ -492,7 +498,7 @@
                                 </h3>
                             </div>
 
-                            <strong class="product-price">
+                            <strong>
                                 Rp59.000
                             </strong>
 
@@ -502,10 +508,12 @@
 
 
                     <!-- PRODUCT 3 -->
+
                     <article
                         class="product-card"
                         data-category="square"
                         data-name="Square Cream"
+                        data-product-id="3"
                     >
 
                         <div class="product-image">
@@ -514,7 +522,6 @@
                                 src="images/hijab3.jpeg"
                                 alt="Square Cream"
                                 loading="lazy"
-                                decoding="async"
                             >
 
                             <button
@@ -522,8 +529,7 @@
                                 type="button"
                                 data-product-id="3"
                             >
-                                <i class="fa-solid fa-plus"></i>
-                                Add to Bag
+                                Quick Add
                             </button>
 
                         </div>
@@ -540,7 +546,7 @@
                                 </h3>
                             </div>
 
-                            <strong class="product-price">
+                            <strong>
                                 Rp55.000
                             </strong>
 
@@ -550,10 +556,12 @@
 
 
                     <!-- PRODUCT 4 -->
+
                     <article
                         class="product-card"
                         data-category="square"
                         data-name="Square Mocha"
+                        data-product-id="4"
                     >
 
                         <div class="product-image">
@@ -562,7 +570,6 @@
                                 src="images/hijab4.jpeg"
                                 alt="Square Mocha"
                                 loading="lazy"
-                                decoding="async"
                             >
 
                             <button
@@ -570,8 +577,7 @@
                                 type="button"
                                 data-product-id="4"
                             >
-                                <i class="fa-solid fa-plus"></i>
-                                Add to Bag
+                                Quick Add
                             </button>
 
                         </div>
@@ -588,7 +594,7 @@
                                 </h3>
                             </div>
 
-                            <strong class="product-price">
+                            <strong>
                                 Rp55.000
                             </strong>
 
@@ -598,10 +604,12 @@
 
 
                     <!-- PRODUCT 5 -->
+
                     <article
                         class="product-card"
                         data-category="premium"
                         data-name="Silk Cocoa"
+                        data-product-id="5"
                     >
 
                         <div class="product-image">
@@ -610,10 +618,9 @@
                                 src="images/hijab5.jpeg"
                                 alt="Silk Cocoa"
                                 loading="lazy"
-                                decoding="async"
                             >
 
-                            <span class="product-badge gold">
+                            <span class="product-badge premium">
                                 Premium
                             </span>
 
@@ -622,8 +629,7 @@
                                 type="button"
                                 data-product-id="5"
                             >
-                                <i class="fa-solid fa-plus"></i>
-                                Add to Bag
+                                Quick Add
                             </button>
 
                         </div>
@@ -640,7 +646,7 @@
                                 </h3>
                             </div>
 
-                            <strong class="product-price">
+                            <strong>
                                 Rp89.000
                             </strong>
 
@@ -650,10 +656,12 @@
 
 
                     <!-- PRODUCT 6 -->
+
                     <article
                         class="product-card"
                         data-category="premium"
                         data-name="Silk Rose"
+                        data-product-id="6"
                     >
 
                         <div class="product-image">
@@ -662,7 +670,6 @@
                                 src="images/hijab6.jpeg"
                                 alt="Silk Rose"
                                 loading="lazy"
-                                decoding="async"
                             >
 
                             <span class="product-badge">
@@ -674,8 +681,7 @@
                                 type="button"
                                 data-product-id="6"
                             >
-                                <i class="fa-solid fa-plus"></i>
-                                Add to Bag
+                                Quick Add
                             </button>
 
                         </div>
@@ -692,7 +698,7 @@
                                 </h3>
                             </div>
 
-                            <strong class="product-price">
+                            <strong>
                                 Rp89.000
                             </strong>
 
@@ -703,81 +709,21 @@
                 </div>
 
 
-                <p
+                <div
                     class="no-results"
                     id="noResults"
                     hidden
                 >
-                    Produk yang kamu cari belum tersedia.
-                </p>
+                    <i class="fa-regular fa-face-frown"></i>
 
-            </div>
+                    <h3>
+                        Produk tidak ditemukan
+                    </h3>
 
-        </section>
-
-
-        <!-- =========================
-             ABOUT
-        ========================== -->
-        <section class="about section" id="about">
-
-            <div class="section-container">
-
-                <div class="about-grid">
-
-                    <div class="about-image">
-
-                        <img
-                            src="images/hijab7.jpeg"
-                            alt="Koleksi hijab flawsomekytaa_byNR"
-                            loading="lazy"
-                            decoding="async"
-                        >
-
-                        <div class="about-number">
-                            <span>01</span>
-                            <small>Our Story</small>
-                        </div>
-
-                    </div>
-
-
-                    <div class="about-content">
-
-                        <span class="section-label">
-                            About Us
-                        </span>
-
-                        <h2>
-                            Simple pieces,
-                            <em>beautiful moments.</em>
-                        </h2>
-
-                        <p>
-                            flawsomekytaa_byNR hadir untuk kamu yang
-                            menyukai tampilan modest, simple, dan
-                            tetap memiliki karakter.
-                        </p>
-
-                        <p>
-                            Kami percaya bahwa hijab bukan hanya
-                            pelengkap outfit, tetapi bagian dari
-                            bagaimana seseorang mengekspresikan
-                            dirinya setiap hari.
-                        </p>
-
-                        <a
-                            href="https://www.instagram.com/flawsomekytaa_bynr/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="text-link"
-                        >
-                            Follow our journey
-                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                        </a>
-
-                    </div>
-
+                    <p>
+                        Coba gunakan kata kunci atau
+                        kategori lainnya.
+                    </p>
                 </div>
 
             </div>
@@ -785,34 +731,83 @@
         </section>
 
 
-        <!-- =========================
-             BENEFITS
-        ========================== -->
-        <section class="benefits section">
+        <!-- =================================================
+             ABOUT
+        ================================================== -->
 
-            <div class="section-container">
+        <section
+            class="section about-section"
+            id="about"
+        >
 
-                <div class="benefit-heading">
+            <div class="container about-grid">
 
-                    <span class="section-label">
-                        Why Flawsomekytaa?
-                    </span>
+                <div class="about-image">
+
+                    <img
+                        src="images/hijab7.jpeg"
+                        alt="About flawsomekytaa_byNR"
+                        loading="lazy"
+                    >
+
+                </div>
+
+                <div class="about-content">
+
+                    <p class="eyebrow">
+                        Our Story
+                    </p>
 
                     <h2>
-                        Made with
-                        <em>you</em>
-                        in mind.
+                        Simplicity that
+                        <span>feels like you.</span>
                     </h2>
+
+                    <p>
+                        flawsomekytaa_byNR hadir untuk
+                        menghadirkan hijab yang tidak hanya
+                        terlihat cantik, tetapi juga nyaman
+                        digunakan dalam aktivitas sehari-hari.
+                    </p>
+
+                    <p>
+                        Kami percaya bahwa gaya yang elegan
+                        tidak harus berlebihan. Dengan pilihan
+                        warna yang versatile dan desain yang
+                        timeless, setiap koleksi dibuat untuk
+                        menjadi bagian dari gaya personalmu.
+                    </p>
+
+                    <a
+                        href="https://www.instagram.com/flawsomekytaa_bynr/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-link"
+                    >
+                        Follow our journey
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
 
                 </div>
 
+            </div>
 
-                <div class="benefit-grid">
+        </section>
+
+
+        <!-- =================================================
+             BENEFITS
+        ================================================== -->
+
+        <section class="benefits-section">
+
+            <div class="container">
+
+                <div class="benefits-grid">
 
                     <div class="benefit-card">
-
                         <div class="benefit-icon">
-                            <i class="fa-solid fa-feather-pointed"></i>
+                            <i class="fa-solid fa-feather"></i>
                         </div>
 
                         <h3>
@@ -820,15 +815,13 @@
                         </h3>
 
                         <p>
-                            Material dipilih untuk memberikan
-                            rasa nyaman saat digunakan sehari-hari.
+                            Nyaman digunakan untuk
+                            aktivitas sehari-hari.
                         </p>
-
                     </div>
 
 
                     <div class="benefit-card">
-
                         <div class="benefit-icon">
                             <i class="fa-regular fa-gem"></i>
                         </div>
@@ -838,17 +831,15 @@
                         </h3>
 
                         <p>
-                            Warna dan desain timeless yang mudah
-                            dipadukan dengan berbagai outfit.
+                            Warna dan desain yang
+                            timeless.
                         </p>
-
                     </div>
 
 
                     <div class="benefit-card">
-
                         <div class="benefit-icon">
-                            <i class="fa-solid fa-heart"></i>
+                            <i class="fa-solid fa-star"></i>
                         </div>
 
                         <h3>
@@ -856,17 +847,15 @@
                         </h3>
 
                         <p>
-                            Setiap produk dipilih dengan perhatian
-                            terhadap kualitas dan detail.
+                            Produk dipilih dengan
+                            memperhatikan kualitas.
                         </p>
-
                     </div>
 
 
                     <div class="benefit-card">
-
                         <div class="benefit-icon">
-                            <i class="fa-solid fa-box-open"></i>
+                            <i class="fa-solid fa-bag-shopping"></i>
                         </div>
 
                         <h3>
@@ -874,10 +863,9 @@
                         </h3>
 
                         <p>
-                            Pilih produk favorit dan lanjutkan
-                            pemesanan dengan mudah melalui WhatsApp.
+                            Pesan dengan mudah melalui
+                            WhatsApp.
                         </p>
-
                     </div>
 
                 </div>
@@ -887,40 +875,161 @@
         </section>
 
 
-        <!-- =========================
-             CTA
-        ========================== -->
-        <section class="cta section">
+        <!-- =================================================
+             TESTIMONIALS
+        ================================================== -->
 
-            <div class="section-container">
+        <section class="section testimonials-section">
 
-                <div class="cta-box">
+            <div class="container">
 
-                    <div class="cta-decoration"></div>
+                <div class="section-heading centered">
 
-                    <span class="section-label light">
-                        Your Everyday Style
-                    </span>
+                    <div>
+                        <p class="eyebrow">
+                            Kind Words
+                        </p>
 
-                    <h2>
-                        Find the hijab
-                        <em>that feels like you.</em>
-                    </h2>
+                        <h2>
+                            Little words,
+                            <span>big meaning.</span>
+                        </h2>
+                    </div>
 
-                    <p>
-                        Temukan warna favoritmu dan buat setiap
-                        penampilan terasa lebih personal.
+                    <p class="section-description">
+                        Ruang untuk cerita dan kesan dari
+                        mereka yang memilih
+                        flawsomekytaa_byNR.
                     </p>
 
-                    <a
-                        href="#collection"
-                        class="btn btn-light"
-                    >
-                        Shop Collection
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
+                </div>
+
+
+                <div class="testimonial-grid">
+
+                    <article class="testimonial-card">
+
+                        <div class="stars">
+                            ★★★★★
+                        </div>
+
+                        <p>
+                            “Sample review — ganti bagian ini
+                            dengan review pelanggan asli
+                            ketika sudah tersedia.”
+                        </p>
+
+                        <div class="reviewer">
+                            <span class="reviewer-avatar">
+                                A
+                            </span>
+
+                            <div>
+                                <strong>
+                                    Customer Note
+                                </strong>
+
+                                <small>
+                                    Customer Review
+                                </small>
+                            </div>
+                        </div>
+
+                    </article>
+
+
+                    <article class="testimonial-card featured">
+
+                        <div class="stars">
+                            ★★★★★
+                        </div>
+
+                        <p>
+                            “Sample review — kamu bisa
+                            menggantinya dengan pengalaman
+                            pelanggan yang sebenarnya.”
+                        </p>
+
+                        <div class="reviewer">
+                            <span class="reviewer-avatar">
+                                N
+                            </span>
+
+                            <div>
+                                <strong>
+                                    Customer Note
+                                </strong>
+
+                                <small>
+                                    Customer Review
+                                </small>
+                            </div>
+                        </div>
+
+                    </article>
+
+
+                    <article class="testimonial-card">
+
+                        <div class="stars">
+                            ★★★★★
+                        </div>
+
+                        <p>
+                            “Sample review — bagian ini
+                            disiapkan agar tampilan website
+                            tetap terlihat hidup.”
+                        </p>
+
+                        <div class="reviewer">
+                            <span class="reviewer-avatar">
+                                R
+                            </span>
+
+                            <div>
+                                <strong>
+                                    Customer Note
+                                </strong>
+
+                                <small>
+                                    Customer Review
+                                </small>
+                            </div>
+                        </div>
+
+                    </article>
 
                 </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             CTA
+        ================================================== -->
+
+        <section class="cta-section">
+
+            <div class="container cta-inner">
+
+                <p class="eyebrow">
+                    Your Everyday Essential
+                </p>
+
+                <h2>
+                    Find the hijab that
+                    <span>feels like you.</span>
+                </h2>
+
+                <a
+                    href="#collection"
+                    class="btn btn-light"
+                >
+                    Shop Collection
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
 
             </div>
 
@@ -929,111 +1038,56 @@
     </main>
 
 
-    <!-- =========================
+    <!-- =====================================================
          FOOTER
-    ========================== -->
-    <footer class="footer" id="contact">
+    ====================================================== -->
 
-        <div class="section-container">
+    <footer
+        class="footer"
+        id="contact"
+    >
 
-            <div class="footer-grid">
+        <div class="container footer-grid">
 
-                <div class="footer-brand">
+            <div class="footer-brand">
 
-                    <a href="#home" class="footer-logo">
-                        flawsomekytaa<span>_byNR</span>
+                <a
+                    href="#home"
+                    class="logo footer-logo"
+                >
+                    flawsomekytaa<span>_byNR</span>
+                </a>
+
+                <p>
+                    Modest, elegant, and timeless.
+                    Made for your everyday moments.
+                </p>
+
+                <div class="social-links">
+
+                    <a
+                        href="https://www.instagram.com/flawsomekytaa_bynr/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Instagram"
+                    >
+                        <i class="fa-brands fa-instagram"></i>
                     </a>
-
-                    <p>
-                        Soft pieces for your everyday elegance.
-                    </p>
-
-                    <div class="social-links">
-
-                        <a
-                            href="https://www.instagram.com/flawsomekytaa_bynr/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="Instagram"
-                        >
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
-
-                        <a
-                            href="https://wa.me/62882002403676"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="WhatsApp"
-                        >
-                            <i class="fa-brands fa-whatsapp"></i>
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                <div class="footer-column">
-
-                    <h4>
-                        Explore
-                    </h4>
-
-                    <a href="#home">Home</a>
-                    <a href="#collection">Collection</a>
-                    <a href="#about">About Us</a>
-
-                </div>
-
-
-                <div class="footer-column">
-
-                    <h4>
-                        Contact
-                    </h4>
 
                     <a
                         href="https://wa.me/62882002403676"
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label="WhatsApp"
                     >
-                        WhatsApp
-                    </a>
-
-                    <a href="mailto:flawsomekytaabynr@gmail.com">
-                        Email
+                        <i class="fa-brands fa-whatsapp"></i>
                     </a>
 
                     <a
-                        href="https://www.instagram.com/flawsomekytaa_bynr/"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        href="mailto:flawsomekytaabynr@gmail.com"
+                        aria-label="Email"
                     >
-                        Instagram
-                    </a>
-
-                </div>
-
-
-                <div class="footer-column newsletter">
-
-                    <h4>
-                        Stay in touch
-                    </h4>
-
-                    <p>
-                        Follow Instagram kami untuk update
-                        koleksi terbaru.
-                    </p>
-
-                    <a
-                        href="https://www.instagram.com/flawsomekytaa_bynr/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="footer-instagram"
-                    >
-                        @flawsomekytaa_bynr
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        <i class="fa-regular fa-envelope"></i>
                     </a>
 
                 </div>
@@ -1041,35 +1095,264 @@
             </div>
 
 
-            <div class="footer-bottom">
+            <div class="footer-column">
+
+                <h4>
+                    Explore
+                </h4>
+
+                <a href="#home">Home</a>
+                <a href="#collection">Collection</a>
+                <a href="#about">About</a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Contact
+                </h4>
+
+                <a
+                    href="https://wa.me/62882002403676"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    WhatsApp
+                </a>
+
+                <a
+                    href="mailto:flawsomekytaabynr@gmail.com"
+                >
+                    Email
+                </a>
+
+                <a
+                    href="https://www.instagram.com/flawsomekytaa_bynr/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Instagram
+                </a>
+
+            </div>
+
+
+            <div class="footer-column footer-note">
+
+                <h4>
+                    flawsomekytaa_byNR
+                </h4>
 
                 <p>
-                    © 2026 flawsomekytaa_byNR. All rights reserved.
+                    Where warmth meets simplicity,
+                    and every fold tells a story.
                 </p>
 
-                <span>
-                    Made with love ♡
-                </span>
-
             </div>
+
+        </div>
+
+
+        <div class="container footer-bottom">
+
+            <p>
+                © 2026 flawsomekytaa_byNR.
+                All rights reserved.
+            </p>
+
+            <span>
+                Made with simplicity ♡
+            </span>
 
         </div>
 
     </footer>
 
 
-    <!-- =========================
+    <!-- =====================================================
+         PRODUCT DETAIL MODAL
+    ====================================================== -->
+
+    <div
+        class="product-modal-overlay"
+        id="productModalOverlay"
+    ></div>
+
+    <div
+        class="product-modal"
+        id="productModal"
+        aria-hidden="true"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalProductName"
+    >
+
+        <button
+            type="button"
+            class="modal-close"
+            id="modalClose"
+            aria-label="Close product detail"
+        >
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+
+        <div class="product-modal-grid">
+
+            <div class="modal-product-image">
+
+                <img
+                    src=""
+                    alt=""
+                    id="modalProductImage"
+                >
+
+                <span
+                    class="modal-image-label"
+                    id="modalProductBadge"
+                ></span>
+
+            </div>
+
+
+            <div class="modal-product-content">
+
+                <span
+                    class="modal-category"
+                    id="modalProductCategory"
+                ></span>
+
+                <h2 id="modalProductName">
+                    Product Name
+                </h2>
+
+                <strong
+                    class="modal-price"
+                    id="modalProductPrice"
+                >
+                    Rp0
+                </strong>
+
+                <p
+                    class="modal-description"
+                    id="modalProductDescription"
+                ></p>
+
+
+                <!-- COLORS -->
+
+                <div class="color-section">
+
+                    <div class="color-heading">
+
+                        <span>
+                            Pilih Warna
+                        </span>
+
+                        <strong id="selectedColorName">
+                            Silver Grey
+                        </strong>
+
+                    </div>
+
+                    <div
+                        class="color-swatches"
+                        id="colorSwatches"
+                    ></div>
+
+                </div>
+
+
+                <!-- QUANTITY -->
+
+                <div class="modal-quantity-section">
+
+                    <span>
+                        Quantity
+                    </span>
+
+                    <div class="modal-quantity">
+
+                        <button
+                            type="button"
+                            id="modalQuantityDecrease"
+                            aria-label="Kurangi quantity"
+                        >
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
+
+                        <span id="modalQuantity">
+                            1
+                        </span>
+
+                        <button
+                            type="button"
+                            id="modalQuantityIncrease"
+                            aria-label="Tambah quantity"
+                        >
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="modal-add-btn"
+                    id="modalAddToBag"
+                >
+                    <span>
+                        Add to Bag
+                    </span>
+
+                    <i class="fa-solid fa-bag-shopping"></i>
+                </button>
+
+
+                <div class="modal-info">
+
+                    <div>
+                        <i class="fa-solid fa-feather"></i>
+                        <span>Comfortable everyday wear</span>
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-box"></i>
+                        <span>Packaging carefully prepared</span>
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-heart"></i>
+                        <span>Selected with love</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
          CART OVERLAY
-    ========================== -->
+    ====================================================== -->
+
     <div
         class="cart-overlay"
         id="cartOverlay"
     ></div>
 
 
-    <!-- =========================
+    <!-- =====================================================
          CART SIDEBAR
-    ========================== -->
+    ====================================================== -->
+
     <aside
         class="cart-sidebar"
         id="cartSidebar"
@@ -1080,7 +1363,7 @@
 
             <div>
                 <span>
-                    Your Selection
+                    Your
                 </span>
 
                 <h2>
@@ -1089,9 +1372,9 @@
             </div>
 
             <button
-                id="cartClose"
                 type="button"
-                aria-label="Tutup keranjang"
+                id="cartClose"
+                aria-label="Close shopping bag"
             >
                 <i class="fa-solid fa-xmark"></i>
             </button>
@@ -1110,7 +1393,7 @@
             id="cartEmpty"
         >
 
-            <div class="empty-icon">
+            <div class="cart-empty-icon">
                 <i class="fa-solid fa-bag-shopping"></i>
             </div>
 
@@ -1119,22 +1402,23 @@
             </h3>
 
             <p>
-                Belum ada produk yang kamu pilih.
+                Temukan koleksi favoritmu
+                dan tambahkan ke bag.
             </p>
-
-            <button
-                class="continue-shopping"
-                type="button"
-            >
-                Explore Collection
-            </button>
 
         </div>
 
 
         <div class="cart-footer">
 
-            <div class="cart-total">
+            <button
+                type="button"
+                class="continue-shopping"
+            >
+                Continue Shopping
+            </button>
+
+            <div class="cart-total-row">
 
                 <span>
                     Total
@@ -1147,17 +1431,17 @@
             </div>
 
             <button
+                type="button"
                 class="checkout-btn"
                 id="checkoutBtn"
-                type="button"
+                disabled
             >
                 Checkout via WhatsApp
                 <i class="fa-brands fa-whatsapp"></i>
             </button>
 
-            <small>
-                Kamu akan diarahkan ke WhatsApp untuk
-                menyelesaikan pemesanan.
+            <small class="checkout-note">
+                Pesanan akan dikonfirmasi melalui WhatsApp.
             </small>
 
         </div>
@@ -1165,31 +1449,32 @@
     </aside>
 
 
-    <!-- =========================
+    <!-- =====================================================
          TOAST
-    ========================== -->
+    ====================================================== -->
+
     <div
         class="toast"
         id="toast"
         role="status"
         aria-live="polite"
     >
-        <i class="fa-solid fa-circle-check"></i>
+        <i class="fa-solid fa-check"></i>
+
         <span id="toastMessage">
-            Produk ditambahkan ke bag.
+            Product added.
         </span>
     </div>
 
 
     <noscript>
         <div class="noscript-message">
-            Website ini membutuhkan JavaScript untuk fitur
-            pencarian, filter, dan shopping bag.
+            Website ini membutuhkan JavaScript
+            agar seluruh fitur dapat digunakan.
         </div>
     </noscript>
 
 
-    <!-- JavaScript -->
     <script src="script.js"></script>
 
 </body>
