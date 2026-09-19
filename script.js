@@ -18,7 +18,7 @@ const products = [
         price: 59000,
         image: "images/hijab1.jpeg",
         description:
-            "Pashmina dengan nuansa latte yang lembut untuk menciptakan tampilan clean, feminine, dan effortless."
+            "Pashmina dengan nuansa latte yang lembut, cocok untuk tampilan clean dan effortless."
     },
 
     {
@@ -29,7 +29,7 @@ const products = [
         price: 59000,
         image: "images/hijab2.jpeg",
         description:
-            "Pashmina bernuansa sand yang versatile dan mudah dipadukan dengan berbagai gaya outfit."
+            "Nuansa sand yang netral untuk tampilan sederhana dan mudah dipadukan."
     },
 
     {
@@ -40,7 +40,7 @@ const products = [
         price: 55000,
         image: "images/hijab3.jpeg",
         description:
-            "Square hijab dengan nuansa cream yang memberikan kesan soft, minimal, dan timeless."
+            "Warna cream yang lembut untuk gaya minimal dan timeless."
     },
 
     {
@@ -51,7 +51,7 @@ const products = [
         price: 55000,
         image: "images/hijab4.jpeg",
         description:
-            "Square hijab dengan karakter warna mocha yang hangat untuk tampilan yang sederhana namun elegan."
+            "Nuansa mocha yang hangat untuk tampilan elegan sehari-hari."
     },
 
     {
@@ -62,7 +62,7 @@ const products = [
         price: 89000,
         image: "images/hijab5.jpeg",
         description:
-            "Koleksi premium bernuansa cocoa untuk kamu yang menyukai tampilan lebih sophisticated dan timeless."
+            "Koleksi premium dengan nuansa cocoa yang memberikan kesan refined dan elegan."
     },
 
     {
@@ -73,7 +73,40 @@ const products = [
         price: 89000,
         image: "images/hijab6.jpeg",
         description:
-            "Koleksi premium bernuansa rose dengan karakter feminine dan elegan untuk berbagai kesempatan."
+            "Nuansa rose yang lembut untuk tampilan feminin dan tetap minimal."
+    },
+
+    {
+        id: 7,
+        name: "Pashmina Dusty Lilac",
+        category: "pashmina",
+        categoryName: "Pashmina Collection",
+        price: 65000,
+        image: "images/hijab7.jpeg",
+        description:
+            "Nuansa dusty lilac yang lembut untuk memberikan sentuhan warna yang subtle."
+    },
+
+    {
+        id: 8,
+        name: "Square Espresso",
+        category: "square",
+        categoryName: "Square Collection",
+        price: 65000,
+        image: "images/hijab8.jpeg",
+        description:
+            "Nuansa espresso yang dalam dan elegan, mudah dipadukan dengan berbagai outfit."
+    },
+
+    {
+        id: 9,
+        name: "Silk Nude",
+        category: "premium",
+        categoryName: "Premium Collection",
+        price: 89000,
+        image: "images/hijab9.jpeg",
+        description:
+            "Nuansa nude yang versatile untuk tampilan clean, soft, dan timeless."
     }
 
 ];
@@ -84,7 +117,6 @@ const products = [
 ========================================= */
 
 const WHATSAPP_NUMBER = "62882002403676";
-
 const CART_STORAGE_KEY = "flawsomekytaa_cart";
 
 
@@ -93,17 +125,13 @@ const CART_STORAGE_KEY = "flawsomekytaa_cart";
 ========================================= */
 
 let cart = [];
-
 let toastTimeout = null;
 
 let currentFilter = "all";
-
 let currentSearch = "";
 
 let selectedProductId = null;
-
 let selectedProductColor = "";
-
 let selectedProductQuantity = 1;
 
 
@@ -111,59 +139,81 @@ let selectedProductQuantity = 1;
    DOM - NAVBAR
 ========================================= */
 
-const navbar = document.getElementById("navbar");
+const navbar =
+    document.getElementById("navbar");
 
-const searchToggle = document.getElementById("searchToggle");
+const searchToggle =
+    document.getElementById("searchToggle");
 
-const searchPanel = document.getElementById("searchPanel");
+const searchPanel =
+    document.getElementById("searchPanel");
 
-const searchInput = document.getElementById("searchInput");
+const searchInput =
+    document.getElementById("searchInput");
 
-const searchClose = document.getElementById("searchClose");
+const searchClose =
+    document.getElementById("searchClose");
 
-const menuToggle = document.getElementById("menuToggle");
+const menuToggle =
+    document.getElementById("menuToggle");
 
-const mobileNav = document.getElementById("mobileNav");
+const mobileNav =
+    document.getElementById("mobileNav");
 
 
 /* =========================================
    DOM - COLLECTION
 ========================================= */
 
-const productGrid = document.getElementById("productGrid");
+const productGrid =
+    document.getElementById("productGrid");
 
-const productCards = document.querySelectorAll(".product-card");
+const productCards =
+    document.querySelectorAll(".product-card");
 
-const filterButtons = document.querySelectorAll(".filter-btn");
+const filterButtons =
+    document.querySelectorAll(".filter-btn");
 
-const quickAddButtons = document.querySelectorAll(".quick-add");
+const quickAddButtons =
+    document.querySelectorAll(".quick-add");
 
-const noResults = document.getElementById("noResults");
+const noResults =
+    document.getElementById("noResults");
 
 
 /* =========================================
    DOM - CART
 ========================================= */
 
-const cartToggle = document.getElementById("cartToggle");
+const cartToggle =
+    document.getElementById("cartToggle");
 
-const cartClose = document.getElementById("cartClose");
+const cartClose =
+    document.getElementById("cartClose");
 
-const cartOverlay = document.getElementById("cartOverlay");
+const cartOverlay =
+    document.getElementById("cartOverlay");
 
-const cartSidebar = document.getElementById("cartSidebar");
+const cartSidebar =
+    document.getElementById("cartSidebar");
 
-const cartItems = document.getElementById("cartItems");
+const cartItems =
+    document.getElementById("cartItems");
 
-const cartEmpty = document.getElementById("cartEmpty");
+const cartEmpty =
+    document.getElementById("cartEmpty");
 
-const cartCount = document.getElementById("cartCount");
+const cartCount =
+    document.getElementById("cartCount");
 
-const cartTotal = document.getElementById("cartTotal");
+const cartTotal =
+    document.getElementById("cartTotal");
 
-const checkoutBtn = document.getElementById("checkoutBtn");
+const checkoutBtn =
+    document.getElementById("checkoutBtn");
 
-const continueShopping = document.getElementById("continueShopping");
+const continueShopping =
+    document.getElementById("continueShopping");
 
 
 /* =========================================
@@ -171,46 +221,74 @@ const continueShopping = document.getElementById("continueShopping");
 ========================================= */
 
 const productModalOverlay =
-    document.getElementById("productModalOverlay");
+    document.getElementById(
+        "productModalOverlay"
+    );
 
 const productModal =
-    document.getElementById("productModal");
+    document.getElementById(
+        "productModal"
+    );
 
 const modalClose =
-    document.getElementById("modalClose");
+    document.getElementById(
+        "modalClose"
+    );
 
 const modalProductImage =
-    document.getElementById("modalProductImage");
+    document.getElementById(
+        "modalProductImage"
+    );
 
 const modalProductCategory =
-    document.getElementById("modalProductCategory");
+    document.getElementById(
+        "modalProductCategory"
+    );
 
 const modalProductName =
-    document.getElementById("modalProductName");
+    document.getElementById(
+        "modalProductName"
+    );
 
 const modalProductPrice =
-    document.getElementById("modalProductPrice");
+    document.getElementById(
+        "modalProductPrice"
+    );
 
 const modalProductDescription =
-    document.getElementById("modalProductDescription");
+    document.getElementById(
+        "modalProductDescription"
+    );
 
 const colorOptions =
-    document.getElementById("colorOptions");
+    document.getElementById(
+        "colorOptions"
+    );
 
 const selectedColorText =
-    document.getElementById("selectedColorText");
+    document.getElementById(
+        "selectedColorText"
+    );
 
 const modalQuantityElement =
-    document.getElementById("modalQuantity");
+    document.getElementById(
+        "modalQuantity"
+    );
 
 const modalQuantityMinus =
-    document.getElementById("modalQuantityMinus");
+    document.getElementById(
+        "modalQuantityMinus"
+    );
 
 const modalQuantityPlus =
-    document.getElementById("modalQuantityPlus");
+    document.getElementById(
+        "modalQuantityPlus"
+    );
 
 const modalAddToBag =
-    document.getElementById("modalAddToBag");
+    document.getElementById(
+        "modalAddToBag"
+    );
 
 
 /* =========================================
@@ -221,7 +299,9 @@ const toast =
     document.getElementById("toast");
 
 const toastMessage =
-    document.getElementById("toastMessage");
+    document.getElementById(
+        "toastMessage"
+    );
 
 
 /* =========================================
@@ -230,11 +310,14 @@ const toastMessage =
 
 function formatPrice(price) {
 
-    return new Intl.NumberFormat("id-ID", {
-        style: "currency",
-        currency: "IDR",
-        minimumFractionDigits: 0
-    }).format(price);
+    return new Intl.NumberFormat(
+        "id-ID",
+        {
+            style: "currency",
+            currency: "IDR",
+            minimumFractionDigits: 0
+        }
+    ).format(price);
 
 }
 
@@ -246,7 +329,8 @@ function formatPrice(price) {
 function getProduct(productId) {
 
     return products.find(
-        product => product.id === Number(productId)
+        product =>
+            product.id === Number(productId)
     );
 
 }
@@ -275,13 +359,15 @@ function loadCart() {
     try {
 
         const savedCart =
-            localStorage.getItem(CART_STORAGE_KEY);
+            localStorage.getItem(
+                CART_STORAGE_KEY
+            );
 
         if (!savedCart) {
 
             cart = [];
-
             return;
+
         }
 
         const parsedCart =
@@ -290,24 +376,36 @@ function loadCart() {
         if (!Array.isArray(parsedCart)) {
 
             cart = [];
-
             return;
+
         }
 
         cart = parsedCart
-            .filter(item => item && item.id)
+            .filter(
+                item =>
+                    item &&
+                    item.id
+            )
             .map(item => {
 
                 return {
                     id: Number(item.id),
-                    color: item.color || "",
+
+                    color:
+                        item.color || "",
+
                     quantity: Math.max(
                         1,
-                        Number(item.quantity) || 1
+                        Number(
+                            item.quantity
+                        ) || 1
                     )
                 };
 
-            });
+            })
+            .filter(item =>
+                getProduct(item.id)
+            );
 
     } catch (error) {
 
@@ -341,30 +439,38 @@ function addToCart(
     }
 
     const cleanQuantity =
-        Math.max(1, Number(quantity) || 1);
+        Math.max(
+            1,
+            Number(quantity) || 1
+        );
+
+    const cleanColor =
+        String(color || "").trim();
 
     const existingItem =
         cart.find(item =>
-            item.id === Number(productId) &&
-            item.color === color
+            item.id ===
+                Number(productId) &&
+            item.color ===
+                cleanColor
         );
 
     if (existingItem) {
 
-        existingItem.quantity += cleanQuantity;
+        existingItem.quantity +=
+            cleanQuantity;
 
     } else {
 
         cart.push({
             id: Number(productId),
-            color: color,
+            color: cleanColor,
             quantity: cleanQuantity
         });
 
     }
 
     saveCart();
-
     renderCart();
 
     showToast(
@@ -383,7 +489,8 @@ function changeCartQuantity(
     amount
 ) {
 
-    const index = Number(cartIndex);
+    const index =
+        Number(cartIndex);
 
     if (!cart[index]) {
         return;
@@ -398,7 +505,6 @@ function changeCartQuantity(
     }
 
     saveCart();
-
     renderCart();
 
 }
@@ -408,21 +514,25 @@ function changeCartQuantity(
    REMOVE CART ITEM
 ========================================= */
 
-function removeCartItem(cartIndex) {
+function removeCartItem(
+    cartIndex
+) {
 
-    const index = Number(cartIndex);
+    const index =
+        Number(cartIndex);
 
     if (!cart[index]) {
         return;
     }
 
     const product =
-        getProduct(cart[index].id);
+        getProduct(
+            cart[index].id
+        );
 
     cart.splice(index, 1);
 
     saveCart();
-
     renderCart();
 
     if (product) {
@@ -444,7 +554,10 @@ function calculateCartCount() {
 
     return cart.reduce(
         (total, item) =>
-            total + Number(item.quantity || 0),
+            total +
+            Number(
+                item.quantity || 0
+            ),
         0
     );
 
@@ -469,11 +582,44 @@ function calculateCartTotal() {
 
             return total +
                 product.price *
-                Number(item.quantity || 0);
+                Number(
+                    item.quantity || 0
+                );
 
         },
         0
     );
+
+}
+
+
+/* =========================================
+   ESCAPE HTML
+========================================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
@@ -493,7 +639,8 @@ function renderCart() {
 
     /* COUNT */
 
-    cartCount.textContent = count;
+    cartCount.textContent =
+        count;
 
 
     /* TOTAL */
@@ -508,136 +655,132 @@ function renderCart() {
 
         cartItems.innerHTML = "";
 
-        cartEmpty.classList.add("show");
+        cartEmpty.classList.add(
+            "show"
+        );
 
         return;
+
     }
 
-    cartEmpty.classList.remove("show");
+    cartEmpty.classList.remove(
+        "show"
+    );
 
 
     /* ITEMS */
 
     cartItems.innerHTML =
-        cart.map((item, index) => {
+        cart.map(
+            (item, index) => {
 
-            const product =
-                getProduct(item.id);
+                const product =
+                    getProduct(item.id);
 
-            if (!product) {
-                return "";
-            }
+                if (!product) {
+                    return "";
+                }
 
-            const itemTotal =
-                product.price *
-                Number(item.quantity);
-
-
-            const colorHTML =
-                item.color
-                    ? `
-                        <span class="cart-item-color">
-                            Warna: ${escapeHTML(item.color)}
-                        </span>
-                    `
-                    : `
-                        <span class="cart-item-color">
-                            Warna: Belum dipilih
-                        </span>
-                    `;
+                const itemTotal =
+                    product.price *
+                    Number(item.quantity);
 
 
-            return `
+                const colorHTML =
+                    item.color
 
-                <div class="cart-item">
-
-                    <div class="cart-item-image">
-
-                        <img
-                            src="${product.image}"
-                            alt="${escapeHTML(product.name)}"
-                        >
-
-                    </div>
-
-
-                    <div class="cart-item-info">
-
-                        <span class="cart-item-category">
-                            ${escapeHTML(product.categoryName)}
-                        </span>
-
-                        <h4>
-                            ${escapeHTML(product.name)}
-                        </h4>
-
-                        ${colorHTML}
-
-                        <span class="cart-item-price">
-                            ${formatPrice(itemTotal)}
-                        </span>
-
-
-                        <div class="cart-item-controls">
-
-                            <button
-                                type="button"
-                                data-cart-action="decrease"
-                                data-cart-index="${index}"
-                                aria-label="Kurangi jumlah"
-                            >
-                                <i class="fa-solid fa-minus"></i>
-                            </button>
-
-                            <span>
-                                ${item.quantity}
+                        ? `
+                            <span class="cart-item-color">
+                                Warna:
+                                ${escapeHTML(item.color)}
                             </span>
+                        `
 
-                            <button
-                                type="button"
-                                data-cart-action="increase"
-                                data-cart-index="${index}"
-                                aria-label="Tambah jumlah"
+                        : `
+                            <span class="cart-item-color">
+                                Warna: Belum dipilih
+                            </span>
+                        `;
+
+
+                return `
+                    <div class="cart-item">
+
+                        <div class="cart-item-image">
+
+                            <img
+                                src="${product.image}"
+                                alt="${escapeHTML(product.name)}"
                             >
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
 
                         </div>
 
+
+                        <div class="cart-item-info">
+
+                            <span class="cart-item-category">
+                                ${escapeHTML(
+                                    product.categoryName
+                                )}
+                            </span>
+
+                            <h4>
+                                ${escapeHTML(
+                                    product.name
+                                )}
+                            </h4>
+
+                            ${colorHTML}
+
+                            <span class="cart-item-price">
+                                ${formatPrice(itemTotal)}
+                            </span>
+
+
+                            <div class="cart-item-controls">
+
+                                <button
+                                    type="button"
+                                    data-cart-action="decrease"
+                                    data-cart-index="${index}"
+                                    aria-label="Kurangi jumlah"
+                                >
+                                    <i class="fa-solid fa-minus"></i>
+                                </button>
+
+                                <span>
+                                    ${item.quantity}
+                                </span>
+
+                                <button
+                                    type="button"
+                                    data-cart-action="increase"
+                                    data-cart-index="${index}"
+                                    aria-label="Tambah jumlah"
+                                >
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="cart-item-remove"
+                            data-cart-action="remove"
+                            data-cart-index="${index}"
+                            aria-label="Hapus produk"
+                        >
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+
                     </div>
+                `;
 
-
-                    <button
-                        type="button"
-                        class="cart-item-remove"
-                        data-cart-action="remove"
-                        data-cart-index="${index}"
-                        aria-label="Hapus produk"
-                    >
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-
-                </div>
-
-            `;
-
-        }).join("");
-
-}
-
-
-/* =========================================
-   ESCAPE HTML
-========================================= */
-
-function escapeHTML(value) {
-
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+            }
+        ).join("");
 
 }
 
@@ -663,19 +806,27 @@ cartItems.addEventListener(
             button.dataset.cartAction;
 
         const index =
-            Number(button.dataset.cartIndex);
+            Number(
+                button.dataset.cartIndex
+            );
 
 
         if (action === "increase") {
 
-            changeCartQuantity(index, 1);
+            changeCartQuantity(
+                index,
+                1
+            );
 
         }
 
 
         if (action === "decrease") {
 
-            changeCartQuantity(index, -1);
+            changeCartQuantity(
+                index,
+                -1
+            );
 
         }
 
@@ -696,11 +847,17 @@ cartItems.addEventListener(
 
 function openCart() {
 
-    cartSidebar.classList.add("active");
+    cartSidebar.classList.add(
+        "active"
+    );
 
-    cartOverlay.classList.add("active");
+    cartOverlay.classList.add(
+        "active"
+    );
 
-    document.body.classList.add("cart-open");
+    document.body.classList.add(
+        "cart-open"
+    );
 
 }
 
@@ -711,11 +868,17 @@ function openCart() {
 
 function closeCart() {
 
-    cartSidebar.classList.remove("active");
+    cartSidebar.classList.remove(
+        "active"
+    );
 
-    cartOverlay.classList.remove("active");
+    cartOverlay.classList.remove(
+        "active"
+    );
 
-    document.body.classList.remove("cart-open");
+    document.body.classList.remove(
+        "cart-open"
+    );
 
 }
 
@@ -754,63 +917,70 @@ continueShopping.addEventListener(
    QUICK ADD
 ========================================= */
 
-quickAddButtons.forEach(button => {
+quickAddButtons.forEach(
+    button => {
 
-    button.addEventListener(
-        "click",
-        event => {
+        button.addEventListener(
+            "click",
+            event => {
 
-            event.stopPropagation();
+                event.stopPropagation();
 
-            const productId =
-                button.dataset.productId;
+                const productId =
+                    button.dataset.productId;
 
-            /*
-             * Quick Add tetap dipertahankan seperti
-             * versi website sebelumnya.
-             *
-             * Karena Quick Add tidak membuka pilihan warna,
-             * produk ditambahkan tanpa warna terlebih dahulu.
-             */
 
-            addToCart(
-                productId,
-                "",
-                1
-            );
+                /*
+                    Quick Add tetap dipertahankan.
+                    Karena tidak membuka pilihan warna,
+                    produk ditambahkan tanpa warna.
+                */
 
-        }
-    );
+                addToCart(
+                    productId,
+                    "",
+                    1
+                );
 
-});
+            }
+        );
+
+    }
+);
 
 
 /* =========================================
    FILTER
 ========================================= */
 
-filterButtons.forEach(button => {
+filterButtons.forEach(
+    button => {
 
-    button.addEventListener(
-        "click",
-        () => {
+        button.addEventListener(
+            "click",
+            () => {
 
-            filterButtons.forEach(
-                item =>
-                    item.classList.remove("active")
-            );
+                filterButtons.forEach(
+                    item =>
+                        item.classList.remove(
+                            "active"
+                        )
+                );
 
-            button.classList.add("active");
+                button.classList.add(
+                    "active"
+                );
 
-            currentFilter =
-                button.dataset.filter;
+                currentFilter =
+                    button.dataset.filter;
 
-            applyFilters();
+                applyFilters();
 
-        }
-    );
+            }
+        );
 
-});
+    }
+);
 
 
 /* =========================================
@@ -821,58 +991,79 @@ function applyFilters() {
 
     let visibleCount = 0;
 
-    productCards.forEach(card => {
+    productCards.forEach(
+        card => {
 
-        const productId =
-            Number(card.dataset.productId);
+            const productId =
+                Number(
+                    card.dataset.productId
+                );
 
-        const product =
-            getProduct(productId);
+            const product =
+                getProduct(productId);
 
-        if (!product) {
-            return;
+            if (!product) {
+                return;
+            }
+
+
+            const matchesFilter =
+                currentFilter === "all" ||
+                product.category ===
+                    currentFilter;
+
+
+            const searchText =
+                currentSearch
+                    .trim()
+                    .toLowerCase();
+
+
+            const matchesSearch =
+                !searchText ||
+
+                product.name
+                    .toLowerCase()
+                    .includes(searchText) ||
+
+                product.categoryName
+                    .toLowerCase()
+                    .includes(searchText);
+
+
+            const shouldShow =
+                matchesFilter &&
+                matchesSearch;
+
+
+            if (shouldShow) {
+
+                card.style.display = "";
+
+                visibleCount++;
+
+            } else {
+
+                card.style.display =
+                    "none";
+
+            }
+
         }
-
-        const matchesFilter =
-            currentFilter === "all" ||
-            product.category === currentFilter;
-
-        const searchText =
-            currentSearch.trim().toLowerCase();
-
-        const matchesSearch =
-            !searchText ||
-            product.name.toLowerCase().includes(searchText) ||
-            product.categoryName.toLowerCase().includes(searchText);
-
-
-        const shouldShow =
-            matchesFilter &&
-            matchesSearch;
-
-
-        if (shouldShow) {
-
-            card.style.display = "";
-
-            visibleCount++;
-
-        } else {
-
-            card.style.display = "none";
-
-        }
-
-    });
+    );
 
 
     if (visibleCount === 0) {
 
-        noResults.classList.add("show");
+        noResults.classList.add(
+            "show"
+        );
 
     } else {
 
-        noResults.classList.remove("show");
+        noResults.classList.remove(
+            "show"
+        );
 
     }
 
@@ -885,7 +1076,9 @@ function applyFilters() {
 
 function openSearch() {
 
-    searchPanel.classList.add("active");
+    searchPanel.classList.add(
+        "active"
+    );
 
     setTimeout(
         () => searchInput.focus(),
@@ -901,7 +1094,9 @@ function openSearch() {
 
 function closeSearch() {
 
-    searchPanel.classList.remove("active");
+    searchPanel.classList.remove(
+        "active"
+    );
 
 }
 
@@ -941,7 +1136,15 @@ menuToggle.addEventListener(
     "click",
     () => {
 
-        mobileNav.classList.toggle("active");
+        const isActive =
+            mobileNav.classList.toggle(
+                "active"
+            );
+
+        menuToggle.setAttribute(
+            "aria-expanded",
+            isActive
+        );
 
     }
 );
@@ -954,57 +1157,108 @@ menuToggle.addEventListener(
 const mobileLinks =
     mobileNav.querySelectorAll("a");
 
-mobileLinks.forEach(link => {
+mobileLinks.forEach(
+    link => {
 
-    link.addEventListener(
-        "click",
-        () => {
+        link.addEventListener(
+            "click",
+            () => {
 
-            mobileNav.classList.remove("active");
+                mobileNav.classList.remove(
+                    "active"
+                );
 
-        }
-    );
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
 
-});
+            }
+        );
+
+    }
+);
 
 
 /* =========================================
    PRODUCT CARD DETAIL
 ========================================= */
 
-productCards.forEach(card => {
+productCards.forEach(
+    card => {
 
-    card.addEventListener(
-        "click",
-        event => {
+        card.addEventListener(
+            "click",
+            event => {
 
-            /*
-             * Jangan buka modal ketika
-             * tombol Quick Add ditekan.
-             */
+                /*
+                    Jangan buka modal ketika
+                    tombol Quick Add ditekan.
+                */
 
-            if (
-                event.target.closest(".quick-add")
-            ) {
-                return;
+                if (
+                    event.target.closest(
+                        ".quick-add"
+                    )
+                ) {
+                    return;
+                }
+
+                const productId =
+                    card.dataset.productId;
+
+                openProductModal(
+                    productId
+                );
+
             }
+        );
 
-            const productId =
-                card.dataset.productId;
 
-            openProductModal(productId);
+        /* Keyboard accessibility */
 
-        }
-    );
+        card.addEventListener(
+            "keydown",
+            event => {
 
-});
+                if (
+                    event.key === "Enter" ||
+                    event.key === " "
+                ) {
+
+                    if (
+                        event.target.closest(
+                            ".quick-add"
+                        )
+                    ) {
+                        return;
+                    }
+
+                    event.preventDefault();
+
+                    const productId =
+                        card.dataset.productId;
+
+                    openProductModal(
+                        productId
+                    );
+
+                }
+
+            }
+        );
+
+    }
+);
 
 
 /* =========================================
    OPEN PRODUCT MODAL
 ========================================= */
 
-function openProductModal(productId) {
+function openProductModal(
+    productId
+) {
 
     const product =
         getProduct(productId);
@@ -1012,6 +1266,7 @@ function openProductModal(productId) {
     if (!product) {
         return;
     }
+
 
     selectedProductId =
         Number(productId);
@@ -1048,12 +1303,18 @@ function openProductModal(productId) {
         "Belum dipilih";
 
     document
-        .querySelectorAll(".color-swatch")
-        .forEach(swatch => {
+        .querySelectorAll(
+            ".color-swatch"
+        )
+        .forEach(
+            swatch => {
 
-            swatch.classList.remove("active");
+                swatch.classList.remove(
+                    "active"
+                );
 
-        });
+            }
+        );
 
 
     /* RESET QUANTITY */
@@ -1064,9 +1325,21 @@ function openProductModal(productId) {
 
     /* OPEN */
 
-    productModalOverlay.classList.add("active");
+    productModalOverlay.classList.add(
+        "active"
+    );
 
-    document.body.classList.add("modal-open");
+    document.body.classList.add(
+        "modal-open"
+    );
+
+
+    /* Focus */
+
+    setTimeout(
+        () => modalClose.focus(),
+        100
+    );
 
 }
 
@@ -1077,14 +1350,16 @@ function openProductModal(productId) {
 
 function closeProductModal() {
 
-    productModalOverlay.classList.remove("active");
+    productModalOverlay.classList.remove(
+        "active"
+    );
 
-    document.body.classList.remove("modal-open");
+    document.body.classList.remove(
+        "modal-open"
+    );
 
     selectedProductId = null;
-
     selectedProductColor = "";
-
     selectedProductQuantity = 1;
 
 }
@@ -1140,15 +1415,23 @@ colorOptions.addEventListener(
 
 
         document
-            .querySelectorAll(".color-swatch")
-            .forEach(item => {
+            .querySelectorAll(
+                ".color-swatch"
+            )
+            .forEach(
+                item => {
 
-                item.classList.remove("active");
+                    item.classList.remove(
+                        "active"
+                    );
 
-            });
+                }
+            );
 
 
-        swatch.classList.add("active");
+        swatch.classList.add(
+            "active"
+        );
 
 
         selectedProductColor =
@@ -1222,8 +1505,8 @@ modalAddToBag.addEventListener(
 
 
         /*
-         * Warna wajib dipilih
-         */
+            Warna wajib dipilih.
+        */
 
         if (!selectedProductColor) {
 
@@ -1246,9 +1529,9 @@ modalAddToBag.addEventListener(
 
 
         /*
-         * Buka shopping bag setelah produk
-         * berhasil dimasukkan.
-         */
+            Buka shopping bag setelah
+            produk berhasil dimasukkan.
+        */
 
         setTimeout(
             () => {
@@ -1279,8 +1562,12 @@ checkoutBtn.addEventListener(
         }
 
 
-        let message =
-            "Halo flawsomekytaa_byNR, saya ingin memesan:%0A%0A";
+        const messageLines = [
+
+            "Halo flawsomekytaa_byNR, saya ingin memesan:",
+            ""
+
+        ];
 
 
         cart.forEach(
@@ -1293,41 +1580,58 @@ checkoutBtn.addEventListener(
                     return;
                 }
 
+
                 const itemTotal =
                     product.price *
                     Number(item.quantity);
 
 
-                message +=
-                    `${index + 1}. ${product.name}%0A`;
+                messageLines.push(
+                    `${index + 1}. ${product.name}`
+                );
 
-                message +=
+                messageLines.push(
                     `Warna: ${
                         item.color ||
                         "Belum dipilih"
-                    }%0A`;
+                    }`
+                );
 
-                message +=
-                    `Jumlah: ${item.quantity}%0A`;
+                messageLines.push(
+                    `Jumlah: ${item.quantity}`
+                );
 
-                message +=
-                    `Subtotal: ${formatPrice(itemTotal)}%0A%0A`;
+                messageLines.push(
+                    `Subtotal: ${formatPrice(itemTotal)}`
+                );
+
+                messageLines.push("");
 
             }
         );
 
 
-        message +=
+        messageLines.push(
             `Total: ${formatPrice(
                 calculateCartTotal()
-            )}%0A%0A`;
+            )}`
+        );
 
-        message +=
-            "Mohon informasi mengenai ketersediaan dan proses selanjutnya. Terima kasih.";
+        messageLines.push("");
+
+        messageLines.push(
+            "Mohon informasi mengenai ketersediaan dan proses selanjutnya. Terima kasih."
+        );
+
+
+        const message =
+            messageLines.join("\n");
 
 
         const whatsappURL =
-            `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+            `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+                message
+            )}`;
 
 
         window.open(
@@ -1345,19 +1649,25 @@ checkoutBtn.addEventListener(
 
 function showToast(message) {
 
-    clearTimeout(toastTimeout);
+    clearTimeout(
+        toastTimeout
+    );
 
     toastMessage.textContent =
         message;
 
-    toast.classList.add("show");
+    toast.classList.add(
+        "show"
+    );
 
 
     toastTimeout =
         setTimeout(
             () => {
 
-                toast.classList.remove("show");
+                toast.classList.remove(
+                    "show"
+                );
 
             },
             2800
@@ -1376,15 +1686,20 @@ function handleNavbarScroll() {
         window.scrollY > 30
     ) {
 
-        navbar.classList.add("scrolled");
+        navbar.classList.add(
+            "scrolled"
+        );
 
     } else {
 
-        navbar.classList.remove("scrolled");
+        navbar.classList.remove(
+            "scrolled"
+        );
 
     }
 
 }
+
 
 window.addEventListener(
     "scroll",
@@ -1400,7 +1715,9 @@ document.addEventListener(
     "keydown",
     event => {
 
-        if (event.key !== "Escape") {
+        if (
+            event.key !== "Escape"
+        ) {
             return;
         }
 
@@ -1412,8 +1729,8 @@ document.addEventListener(
         ) {
 
             closeProductModal();
-
             return;
+
         }
 
 
@@ -1424,8 +1741,8 @@ document.addEventListener(
         ) {
 
             closeCart();
-
             return;
+
         }
 
 
@@ -1436,13 +1753,18 @@ document.addEventListener(
         ) {
 
             closeSearch();
-
             return;
+
         }
 
 
         mobileNav.classList.remove(
             "active"
+        );
+
+        menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
         );
 
     }
@@ -1458,9 +1780,17 @@ document.addEventListener(
     event => {
 
         if (
-            !searchPanel.contains(event.target) &&
-            !searchToggle.contains(event.target) &&
-            searchPanel.classList.contains("active")
+            !searchPanel.contains(
+                event.target
+            ) &&
+
+            !searchToggle.contains(
+                event.target
+            ) &&
+
+            searchPanel.classList.contains(
+                "active"
+            )
         ) {
 
             closeSearch();
