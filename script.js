@@ -1,12 +1,19 @@
-/* ==========================================
+/* =========================================================
+   FLAWSOMEKYTAA_BYNR
+   WEBSITE JAVASCRIPT
+========================================================= */
+
+
+/* =========================================================
    PRODUCT DATA
-========================================== */
+========================================================= */
 
 const products = [
     {
         id: 1,
         name: "Pashmina Latte",
-        category: "Pashmina Collection",
+        category: "pashmina",
+        categoryName: "Pashmina Collection",
         price: 59000,
         image: "images/hijab1.jpeg"
     },
@@ -14,7 +21,8 @@ const products = [
     {
         id: 2,
         name: "Pashmina Sand",
-        category: "Pashmina Collection",
+        category: "pashmina",
+        categoryName: "Pashmina Collection",
         price: 59000,
         image: "images/hijab2.jpeg"
     },
@@ -22,7 +30,8 @@ const products = [
     {
         id: 3,
         name: "Square Cream",
-        category: "Square Collection",
+        category: "square",
+        categoryName: "Square Collection",
         price: 55000,
         image: "images/hijab3.jpeg"
     },
@@ -30,7 +39,8 @@ const products = [
     {
         id: 4,
         name: "Square Mocha",
-        category: "Square Collection",
+        category: "square",
+        categoryName: "Square Collection",
         price: 55000,
         image: "images/hijab4.jpeg"
     },
@@ -38,7 +48,8 @@ const products = [
     {
         id: 5,
         name: "Silk Cocoa",
-        category: "Premium Collection",
+        category: "premium",
+        categoryName: "Premium Collection",
         price: 89000,
         image: "images/hijab5.jpeg"
     },
@@ -46,25 +57,60 @@ const products = [
     {
         id: 6,
         name: "Silk Rose",
-        category: "Premium Collection",
+        category: "premium",
+        categoryName: "Premium Collection",
         price: 89000,
         image: "images/hijab6.jpeg"
     }
 ];
 
 
-/* ==========================================
-   CART
-========================================== */
+/* =========================================================
+   SETTINGS
+========================================================= */
 
-let cart = JSON.parse(
-    localStorage.getItem("flawsomekytaa_cart")
-) || [];
+const WHATSAPP_NUMBER = "62882002403676";
+
+const CART_STORAGE_KEY =
+    "flawsomekytaa_cart";
 
 
-/* ==========================================
-   ELEMENTS
-========================================== */
+/* =========================================================
+   STATE
+========================================================= */
+
+let cart = [];
+
+let toastTimeout;
+
+
+/* =========================================================
+   DOM ELEMENTS
+========================================================= */
+
+const navbar =
+    document.getElementById("navbar");
+
+const searchToggle =
+    document.getElementById("searchToggle");
+
+const searchPanel =
+    document.getElementById("searchPanel");
+
+const searchInput =
+    document.getElementById("searchInput");
+
+const searchClose =
+    document.getElementById("searchClose");
+
+const menuToggle =
+    document.getElementById("menuToggle");
+
+const mobileNav =
+    document.getElementById("mobileNav");
+
+const cartToggle =
+    document.getElementById("cartToggle");
 
 const cartSidebar =
     document.getElementById("cartSidebar");
@@ -72,8 +118,14 @@ const cartSidebar =
 const cartOverlay =
     document.getElementById("cartOverlay");
 
+const cartClose =
+    document.getElementById("cartClose");
+
 const cartItems =
     document.getElementById("cartItems");
+
+const cartEmpty =
+    document.getElementById("cartEmpty");
 
 const cartCount =
     document.getElementById("cartCount");
@@ -81,351 +133,579 @@ const cartCount =
 const cartTotal =
     document.getElementById("cartTotal");
 
-const openCartButton =
-    document.getElementById("openCart");
-
-const closeCartButton =
-    document.getElementById("closeCart");
-
-const checkoutButton =
+const checkoutBtn =
     document.getElementById("checkoutBtn");
+
+const noResults =
+    document.getElementById("noResults");
 
 const toast =
     document.getElementById("toast");
 
+const toastMessage =
+    document.getElementById("toastMessage");
 
-/* ==========================================
+const productCards =
+    [...document.querySelectorAll(".product-card")];
+
+const filterButtons =
+    [...document.querySelectorAll(".filter-btn")];
+
+const quickAddButtons =
+    [...document.querySelectorAll(".quick-add")];
+
+const mobileLinks =
+    [...document.querySelectorAll(".mobile-nav a")];
+
+const continueShopping =
+    document.querySelector(".continue-shopping");
+
+
+/* =========================================================
    FORMAT PRICE
-========================================== */
+========================================================= */
 
 function formatPrice(price) {
 
-    return new Intl.NumberFormat("id-ID", {
-        style: "currency",
-        currency: "IDR",
-        maximumFractionDigits: 0
-    }).format(price);
+    return new Intl.NumberFormat(
+        "id-ID",
+        {
+            style: "currency",
+            currency: "IDR",
+            maximumFractionDigits: 0
+        }
+    ).format(price);
 
 }
 
 
-/* ==========================================
-   SAVE CART
-========================================== */
+/* =========================================================
+   GET PRODUCT
+========================================================= */
 
-function saveCart() {
+function getProduct(productId) {
 
-    localStorage.setItem(
-        "flawsomekytaa_cart",
-        JSON.stringify(cart)
+    return products.find(
+        product => product.id === Number(productId)
     );
 
 }
 
 
-/* ==========================================
+/* =========================================================
+   SAVE CART
+========================================================= */
+
+function saveCart() {
+
+    try {
+
+        localStorage.setItem(
+            CART_STORAGE_KEY,
+            JSON.stringify(cart)
+        );
+
+    } catch (error) {
+
+        console.warn(
+            "Cart tidak dapat disimpan:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD CART
+========================================================= */
+
+function loadCart() {
+
+    try {
+
+        const savedCart =
+            localStorage.getItem(CART_STORAGE_KEY);
+
+        if (!savedCart) {
+            cart = [];
+            return;
+        }
+
+        const parsedCart =
+            JSON.parse(savedCart);
+
+        if (!Array.isArray(parsedCart)) {
+            cart = [];
+            return;
+        }
+
+        cart = parsedCart
+            .map(item => {
+
+                const product =
+                    getProduct(item.id);
+
+                if (!product) {
+                    return null;
+                }
+
+                const quantity =
+                    Math.max(
+                        1,
+                        Number(item.quantity) || 1
+                    );
+
+                return {
+                    id: product.id,
+                    quantity
+                };
+
+            })
+            .filter(Boolean);
+
+    } catch (error) {
+
+        console.warn(
+            "Cart sebelumnya tidak dapat dibaca:",
+            error
+        );
+
+        cart = [];
+
+    }
+
+}
+
+
+/* =========================================================
    ADD TO CART
-========================================== */
+========================================================= */
 
 function addToCart(productId) {
 
     const product =
-        products.find(
-            item => item.id === productId
-        );
+        getProduct(productId);
 
     if (!product) {
         return;
     }
 
-
-    const existingProduct =
+    const existingItem =
         cart.find(
-            item => item.id === productId
+            item => item.id === product.id
         );
 
+    if (existingItem) {
 
-    if (existingProduct) {
-
-        existingProduct.quantity++;
+        existingItem.quantity += 1;
 
     } else {
 
         cart.push({
-            ...product,
+            id: product.id,
             quantity: 1
         });
 
     }
 
-
     saveCart();
+    renderCart();
 
-    updateCart();
-
-    showToast();
+    showToast(
+        `${product.name} ditambahkan ke bag.`
+    );
 
     openCart();
 
 }
 
 
-/* ==========================================
-   REMOVE ITEM
-========================================== */
+/* =========================================================
+   REMOVE FROM CART
+========================================================= */
 
 function removeFromCart(productId) {
 
-    cart = cart.filter(
-        item => item.id !== productId
-    );
+    const product =
+        getProduct(productId);
+
+    cart =
+        cart.filter(
+            item => item.id !== Number(productId)
+        );
 
     saveCart();
+    renderCart();
 
-    updateCart();
+    if (product) {
+
+        showToast(
+            `${product.name} dihapus dari bag.`
+        );
+
+    }
 
 }
 
 
-/* ==========================================
+/* =========================================================
    CHANGE QUANTITY
-========================================== */
+========================================================= */
 
 function changeQuantity(
     productId,
-    change
+    amount
 ) {
 
-    const product =
+    const item =
         cart.find(
-            item => item.id === productId
+            cartItem =>
+                cartItem.id === Number(productId)
         );
 
-    if (!product) {
+    if (!item) {
         return;
     }
 
+    item.quantity += amount;
 
-    product.quantity += change;
-
-
-    if (product.quantity <= 0) {
+    if (item.quantity <= 0) {
 
         removeFromCart(productId);
-
         return;
 
     }
 
-
     saveCart();
-
-    updateCart();
+    renderCart();
 
 }
 
 
-/* ==========================================
-   UPDATE CART
-========================================== */
+/* =========================================================
+   CART TOTAL
+========================================================= */
 
-function updateCart() {
+function calculateTotal() {
 
-    saveCart();
+    return cart.reduce(
+        (total, item) => {
+
+            const product =
+                getProduct(item.id);
+
+            if (!product) {
+                return total;
+            }
+
+            return total +
+                product.price * item.quantity;
+
+        },
+        0
+    );
+
+}
 
 
-    /* COUNT */
+/* =========================================================
+   CART COUNT
+========================================================= */
 
-    const totalItems =
-        cart.reduce(
-            (total, item) =>
-                total + item.quantity,
-            0
-        );
+function calculateCartCount() {
 
-    cartCount.textContent = totalItems;
+    return cart.reduce(
+        (total, item) =>
+            total + item.quantity,
+        0
+    );
+
+}
 
 
-    /* EMPTY CART */
+/* =========================================================
+   RENDER CART
+========================================================= */
 
-    if (cart.length === 0) {
+function renderCart() {
 
-        cartItems.innerHTML = `
-            <div class="empty-cart">
-
-                <i class="fa-solid fa-bag-shopping"></i>
-
-                <p>
-                    Your bag is empty.
-                </p>
-
-                <button
-                    type="button"
-                    class="btn btn-primary"
-                    onclick="closeCart()"
-                >
-                    Explore Collection
-                </button>
-
-            </div>
-        `;
-
-        cartTotal.textContent = "Rp0";
-
+    if (!cartItems) {
         return;
     }
 
-
-    /* CART ITEMS */
-
     cartItems.innerHTML = "";
 
+    const totalItems =
+        calculateCartCount();
 
-    let total = 0;
+    const totalPrice =
+        calculateTotal();
 
+
+    /* CART COUNT */
+
+    cartCount.textContent =
+        totalItems > 99
+            ? "99+"
+            : totalItems;
+
+
+    /* TOTAL */
+
+    cartTotal.textContent =
+        formatPrice(totalPrice);
+
+
+    /* EMPTY STATE */
+
+    if (cart.length === 0) {
+
+        cartEmpty.classList.add("visible");
+
+        cartItems.style.display = "none";
+
+        checkoutBtn.disabled = true;
+
+        return;
+
+    }
+
+
+    cartEmpty.classList.remove("visible");
+
+    cartItems.style.display = "block";
+
+    checkoutBtn.disabled = false;
+
+
+    /* ITEMS */
 
     cart.forEach(item => {
 
-        total +=
-            item.price * item.quantity;
+        const product =
+            getProduct(item.id);
 
+        if (!product) {
+            return;
+        }
 
-        const cartItem =
+        const itemElement =
             document.createElement("div");
 
-        cartItem.className = "cart-item";
+        itemElement.className =
+            "cart-item";
 
+        itemElement.innerHTML = `
 
-        cartItem.innerHTML = `
-            <img
-                src="${item.image}"
-                alt="${item.name}"
-                loading="lazy"
-            >
+            <div class="cart-item-image">
 
-            <div>
+                <img
+                    src="${product.image}"
+                    alt="${product.name}"
+                >
+
+            </div>
+
+            <div class="cart-item-info">
 
                 <h4>
-                    ${item.name}
+                    ${product.name}
                 </h4>
 
-                <p class="cart-item-price">
-                    ${formatPrice(item.price)}
-                </p>
+                <span>
+                    ${formatPrice(product.price)}
+                </span>
 
-                <div class="quantity">
+                <div class="cart-item-controls">
+
+                    <div class="quantity-controls">
+
+                        <button
+                            type="button"
+                            data-action="decrease"
+                            data-product-id="${product.id}"
+                            aria-label="Kurangi jumlah ${product.name}"
+                        >
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
+
+                        <span>
+                            ${item.quantity}
+                        </span>
+
+                        <button
+                            type="button"
+                            data-action="increase"
+                            data-product-id="${product.id}"
+                            aria-label="Tambah jumlah ${product.name}"
+                        >
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+
+                    </div>
 
                     <button
                         type="button"
-                        onclick="changeQuantity(${item.id}, -1)"
-                        aria-label="Kurangi jumlah ${item.name}"
+                        class="remove-item"
+                        data-action="remove"
+                        data-product-id="${product.id}"
                     >
-                        −
-                    </button>
-
-                    <span>
-                        ${item.quantity}
-                    </span>
-
-                    <button
-                        type="button"
-                        onclick="changeQuantity(${item.id}, 1)"
-                        aria-label="Tambah jumlah ${item.name}"
-                    >
-                        +
+                        Remove
                     </button>
 
                 </div>
 
             </div>
 
-            <button
-                type="button"
-                class="remove-item"
-                onclick="removeFromCart(${item.id})"
-                aria-label="Hapus ${item.name} dari bag"
-            >
-                Remove
-            </button>
         `;
 
-
-        cartItems.appendChild(cartItem);
+        cartItems.appendChild(itemElement);
 
     });
 
-
-    cartTotal.textContent =
-        formatPrice(total);
-
 }
 
 
-/* ==========================================
-   OPEN CART
-========================================== */
+/* =========================================================
+   CART ITEM EVENTS
+========================================================= */
 
-function openCart() {
-
-    cartSidebar.classList.add("active");
-
-    cartOverlay.classList.add("active");
-
-    cartSidebar.setAttribute(
-        "aria-hidden",
-        "false"
-    );
-
-    cartOverlay.setAttribute(
-        "aria-hidden",
-        "false"
-    );
-
-    document.body.classList.add(
-        "cart-open"
-    );
-
-}
-
-
-/* ==========================================
-   CLOSE CART
-========================================== */
-
-function closeCart() {
-
-    cartSidebar.classList.remove("active");
-
-    cartOverlay.classList.remove("active");
-
-    cartSidebar.setAttribute(
-        "aria-hidden",
-        "true"
-    );
-
-    cartOverlay.setAttribute(
-        "aria-hidden",
-        "true"
-    );
-
-    document.body.classList.remove(
-        "cart-open"
-    );
-
-}
-
-
-/* ==========================================
-   CART EVENTS
-========================================== */
-
-openCartButton.addEventListener(
+cartItems.addEventListener(
     "click",
-    openCart
+    event => {
+
+        const button =
+            event.target.closest(
+                "[data-action]"
+            );
+
+        if (!button) {
+            return;
+        }
+
+        const action =
+            button.dataset.action;
+
+        const productId =
+            Number(button.dataset.productId);
+
+
+        if (action === "increase") {
+
+            changeQuantity(
+                productId,
+                1
+            );
+
+        }
+
+
+        if (action === "decrease") {
+
+            changeQuantity(
+                productId,
+                -1
+            );
+
+        }
+
+
+        if (action === "remove") {
+
+            removeFromCart(
+                productId
+            );
+
+        }
+
+    }
 );
 
 
-closeCartButton.addEventListener(
+/* =========================================================
+   OPEN CART
+========================================================= */
+
+function openCart() {
+
+    cartSidebar.classList.add("open");
+
+    cartOverlay.classList.add("open");
+
+    cartSidebar.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    cartToggle.setAttribute(
+        "aria-expanded",
+        "true"
+    );
+
+    document.body.classList.add(
+        "no-scroll"
+    );
+
+}
+
+
+/* =========================================================
+   CLOSE CART
+========================================================= */
+
+function closeCart() {
+
+    cartSidebar.classList.remove("open");
+
+    cartOverlay.classList.remove("open");
+
+    cartSidebar.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    cartToggle.setAttribute(
+        "aria-expanded",
+        "false"
+    );
+
+    document.body.classList.remove(
+        "no-scroll"
+    );
+
+}
+
+
+/* =========================================================
+   CART BUTTON
+========================================================= */
+
+cartToggle.addEventListener(
+    "click",
+    () => {
+
+        if (
+            cartSidebar.classList.contains("open")
+        ) {
+
+            closeCart();
+
+        } else {
+
+            closeSearch();
+            closeMobileMenu();
+
+            openCart();
+
+        }
+
+    }
+);
+
+
+cartClose.addEventListener(
     "click",
     closeCart
 );
@@ -437,98 +717,373 @@ cartOverlay.addEventListener(
 );
 
 
-/* ==========================================
-   CHECKOUT WHATSAPP
-========================================== */
+/* =========================================================
+   QUICK ADD BUTTONS
+========================================================= */
 
-checkoutButton.addEventListener(
+quickAddButtons.forEach(
+    button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                const productId =
+                    Number(
+                        button.dataset.productId
+                    );
+
+                addToCart(productId);
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+filterButtons.forEach(
+    button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                filterButtons.forEach(
+                    filterButton => {
+
+                        filterButton.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+                button.classList.add(
+                    "active"
+                );
+
+                applyFilters();
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   SEARCH + FILTER
+========================================================= */
+
+function applyFilters() {
+
+    const activeFilter =
+        document.querySelector(
+            ".filter-btn.active"
+        );
+
+    const category =
+        activeFilter?.dataset.category ||
+        "all";
+
+    const searchValue =
+        searchInput.value
+            .trim()
+            .toLowerCase();
+
+    let visibleCount = 0;
+
+
+    productCards.forEach(
+        card => {
+
+            const cardCategory =
+                card.dataset.category
+                    .toLowerCase();
+
+            const productName =
+                card.dataset.name
+                    .toLowerCase();
+
+
+            const matchesCategory =
+                category === "all" ||
+                cardCategory === category;
+
+
+            const matchesSearch =
+                searchValue === "" ||
+                productName.includes(
+                    searchValue
+                ) ||
+                cardCategory.includes(
+                    searchValue
+                );
+
+
+            const shouldShow =
+                matchesCategory &&
+                matchesSearch;
+
+
+            card.classList.toggle(
+                "is-hidden",
+                !shouldShow
+            );
+
+
+            if (shouldShow) {
+                visibleCount += 1;
+            }
+
+        }
+    );
+
+
+    noResults.hidden =
+        visibleCount !== 0;
+
+}
+
+
+/* =========================================================
+   SEARCH OPEN
+========================================================= */
+
+function openSearch() {
+
+    closeCart();
+    closeMobileMenu();
+
+    searchPanel.classList.add("open");
+
+    searchToggle.setAttribute(
+        "aria-expanded",
+        "true"
+    );
+
+    setTimeout(
+        () => {
+            searchInput.focus();
+        },
+        250
+    );
+
+}
+
+
+/* =========================================================
+   SEARCH CLOSE
+========================================================= */
+
+function closeSearch() {
+
+    searchPanel.classList.remove(
+        "open"
+    );
+
+    searchToggle.setAttribute(
+        "aria-expanded",
+        "false"
+    );
+
+    searchInput.value = "";
+
+    applyFilters();
+
+}
+
+
+/* =========================================================
+   SEARCH EVENTS
+========================================================= */
+
+searchToggle.addEventListener(
+    "click",
+    () => {
+
+        if (
+            searchPanel.classList.contains(
+                "open"
+            )
+        ) {
+
+            closeSearch();
+
+        } else {
+
+            openSearch();
+
+        }
+
+    }
+);
+
+
+searchClose.addEventListener(
+    "click",
+    closeSearch
+);
+
+
+searchInput.addEventListener(
+    "input",
+    applyFilters
+);
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+function openMobileMenu() {
+
+    closeCart();
+    closeSearch();
+
+    mobileNav.classList.add("open");
+
+    menuToggle.setAttribute(
+        "aria-expanded",
+        "true"
+    );
+
+}
+
+
+function closeMobileMenu() {
+
+    mobileNav.classList.remove(
+        "open"
+    );
+
+    menuToggle.setAttribute(
+        "aria-expanded",
+        "false"
+    );
+
+}
+
+
+menuToggle.addEventListener(
+    "click",
+    () => {
+
+        if (
+            mobileNav.classList.contains(
+                "open"
+            )
+        ) {
+
+            closeMobileMenu();
+
+        } else {
+
+            openMobileMenu();
+
+        }
+
+    }
+);
+
+
+/* CLOSE MOBILE MENU WHEN LINK CLICKED */
+
+mobileLinks.forEach(
+    link => {
+
+        link.addEventListener(
+            "click",
+            closeMobileMenu
+        );
+
+    }
+);
+
+
+/* =========================================================
+   CONTINUE SHOPPING
+========================================================= */
+
+continueShopping.addEventListener(
+    "click",
+    () => {
+
+        closeCart();
+
+        document
+            .getElementById("collection")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
+
+    }
+);
+
+
+/* =========================================================
+   CHECKOUT WHATSAPP
+========================================================= */
+
+checkoutBtn.addEventListener(
     "click",
     () => {
 
         if (cart.length === 0) {
-
-            alert(
-                "Keranjang masih kosong."
-            );
-
             return;
         }
 
-
-        /*
-            Nomor WhatsApp bisnis.
-            Format:
-            628xxxxxxxxxx
-
-            Jangan menggunakan:
-            +62
-            08
-            spasi
-            tanda -
-        */
-
-        const phoneNumber =
-            "62882002403676";
+        const total =
+            calculateTotal();
 
 
-        /*
-            Membuat pesan pesanan
-        */
+        const orderItems =
+            cart.map(
+                item => {
 
-        const messageLines = [
+                    const product =
+                        getProduct(item.id);
+
+                    return `• ${product.name} x${item.quantity} = ${formatPrice(
+                        product.price * item.quantity
+                    )}`;
+
+                }
+            );
+
+
+        const message = [
 
             "Halo flawsomekytaa_byNR 👋",
+
             "",
+
             "Saya ingin memesan:",
-            ""
 
-        ];
-
-
-        cart.forEach(item => {
-
-            messageLines.push(
-                `• ${item.name} x${item.quantity} = ${formatPrice(
-                    item.price * item.quantity
-                )}`
-            );
-
-        });
-
-
-        const total =
-            cart.reduce(
-                (sum, item) =>
-                    sum +
-                    item.price *
-                    item.quantity,
-                0
-            );
-
-
-        messageLines.push(
             "",
+
+            ...orderItems,
+
+            "",
+
             `Total: ${formatPrice(total)}`,
+
             "",
-            "Mohon info ketersediaan dan proses pemesanannya. Terima kasih 🤍"
-        );
 
+            "Mohon info ketersediaan dan proses pemesanannya.",
 
-        /*
-            encodeURIComponent digunakan
-            agar spasi, emoji, simbol,
-            dan karakter lainnya aman
-            digunakan dalam URL WhatsApp.
-        */
+            "Terima kasih 🤍"
 
-        const message =
-            encodeURIComponent(
-                messageLines.join("\n")
-            );
+        ].join("\n");
 
 
         const whatsappURL =
-            `https://wa.me/${phoneNumber}?text=${message}`;
+            `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
 
         window.open(
@@ -541,20 +1096,19 @@ checkoutButton.addEventListener(
 );
 
 
-/* ==========================================
+/* =========================================================
    TOAST
-========================================== */
+========================================================= */
 
-let toastTimeout;
+function showToast(message) {
 
+    clearTimeout(toastTimeout);
 
-function showToast() {
+    toastMessage.textContent =
+        message;
 
-    toast.classList.add("active");
-
-
-    clearTimeout(
-        toastTimeout
+    toast.classList.add(
+        "show"
     );
 
 
@@ -563,304 +1117,101 @@ function showToast() {
             () => {
 
                 toast.classList.remove(
-                    "active"
+                    "show"
                 );
 
             },
-            2500
+            2800
         );
 
 }
 
 
-/* ==========================================
-   FILTER + SEARCH
-========================================== */
+/* =========================================================
+   NAVBAR SCROLL EFFECT
+========================================================= */
 
-const filterButtons =
-    document.querySelectorAll(
-        ".filter-btn"
-    );
+function handleNavbarScroll() {
 
-const productCards =
-    document.querySelectorAll(
-        ".product-card"
-    );
+    if (window.scrollY > 30) {
 
+        navbar.classList.add(
+            "scrolled"
+        );
 
-const searchToggle =
-    document.querySelector(
-        ".search-toggle"
-    );
+    } else {
 
-const searchBox =
-    document.getElementById(
-        "searchBox"
-    );
+        navbar.classList.remove(
+            "scrolled"
+        );
 
-const closeSearch =
-    document.getElementById(
-        "closeSearch"
-    );
-
-const searchInput =
-    document.getElementById(
-        "searchInput"
-    );
-
-
-let activeCategory = "all";
-
-
-/*
-    Fungsi utama untuk menggabungkan
-    filter kategori + search.
-*/
-
-function filterAndSearchProducts() {
-
-    const searchValue =
-        searchInput.value
-            .toLowerCase()
-            .trim();
-
-
-    productCards.forEach(card => {
-
-        const cardCategory =
-            card.dataset.category;
-
-
-        const productName =
-            card.dataset.name
-                .toLowerCase();
-
-
-        const matchCategory =
-            activeCategory === "all" ||
-            cardCategory === activeCategory;
-
-
-        const matchSearch =
-            productName.includes(
-                searchValue
-            );
-
-
-        if (
-            matchCategory &&
-            matchSearch
-        ) {
-
-            card.style.display = "";
-
-        } else {
-
-            card.style.display = "none";
-
-        }
-
-    });
+    }
 
 }
 
 
-/* ==========================================
-   FILTER BUTTON
-========================================== */
-
-filterButtons.forEach(
-    button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                filterButtons.forEach(
-                    btn =>
-                        btn.classList.remove(
-                            "active"
-                        )
-                );
-
-
-                button.classList.add(
-                    "active"
-                );
-
-
-                activeCategory =
-                    button.dataset.category;
-
-
-                filterAndSearchProducts();
-
-            }
-        );
-
+window.addEventListener(
+    "scroll",
+    handleNavbarScroll,
+    {
+        passive: true
     }
 );
 
 
-/* ==========================================
-   OPEN SEARCH
-========================================== */
-
-searchToggle.addEventListener(
-    "click",
-    () => {
-
-        searchBox.classList.add(
-            "active"
-        );
-
-        searchInput.focus();
-
-    }
-);
-
-
-/* ==========================================
-   CLOSE SEARCH
-========================================== */
-
-closeSearch.addEventListener(
-    "click",
-    () => {
-
-        searchBox.classList.remove(
-            "active"
-        );
-
-        searchInput.value = "";
-
-
-        /*
-            Setelah search ditutup,
-            filter kategori tetap dipertahankan.
-        */
-
-        filterAndSearchProducts();
-
-    }
-);
-
-
-/* ==========================================
-   SEARCH INPUT
-========================================== */
-
-searchInput.addEventListener(
-    "input",
-    filterAndSearchProducts
-);
-
-
-/* ==========================================
-   MOBILE MENU
-========================================== */
-
-const mobileMenuBtn =
-    document.getElementById(
-        "mobileMenuBtn"
-    );
-
-const mobileMenu =
-    document.getElementById(
-        "mobileMenu"
-    );
-
-
-mobileMenuBtn.addEventListener(
-    "click",
-    () => {
-
-        const isActive =
-            mobileMenu.classList.toggle(
-                "active"
-            );
-
-
-        mobileMenuBtn.setAttribute(
-            "aria-expanded",
-            String(isActive)
-        );
-
-
-        mobileMenuBtn.setAttribute(
-            "aria-label",
-            isActive
-                ? "Close navigation menu"
-                : "Open navigation menu"
-        );
-
-    }
-);
-
-
-/* ==========================================
-   CLOSE MOBILE MENU AFTER CLICK
-========================================== */
-
-mobileMenu
-    .querySelectorAll("a")
-    .forEach(link => {
-
-        link.addEventListener(
-            "click",
-            () => {
-
-                mobileMenu.classList.remove(
-                    "active"
-                );
-
-
-                mobileMenuBtn.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-
-                mobileMenuBtn.setAttribute(
-                    "aria-label",
-                    "Open navigation menu"
-                );
-
-            }
-        );
-
-    });
-
-
-/* ==========================================
-   ESC KEY
-========================================== */
+/* =========================================================
+   ESCAPE KEY
+========================================================= */
 
 document.addEventListener(
     "keydown",
     event => {
 
-        if (event.key === "Escape") {
+        if (event.key !== "Escape") {
+            return;
+        }
 
-            closeCart();
+        closeCart();
+        closeSearch();
+        closeMobileMenu();
 
-            searchBox.classList.remove(
-                "active"
-            );
+    }
+);
 
-            mobileMenu.classList.remove(
-                "active"
-            );
 
-            mobileMenuBtn.setAttribute(
-                "aria-expanded",
-                "false"
-            );
+/* =========================================================
+   CLOSE SEARCH / MENU WHEN CLICKING OUTSIDE
+========================================================= */
 
-            mobileMenuBtn.setAttribute(
-                "aria-label",
-                "Open navigation menu"
-            );
+document.addEventListener(
+    "click",
+    event => {
+
+        const clickedInsideSearch =
+            searchPanel.contains(event.target) ||
+            searchToggle.contains(event.target);
+
+        const clickedInsideMenu =
+            mobileNav.contains(event.target) ||
+            menuToggle.contains(event.target);
+
+
+        if (
+            !clickedInsideSearch &&
+            searchPanel.classList.contains("open")
+        ) {
+
+            closeSearch();
+
+        }
+
+
+        if (
+            !clickedInsideMenu &&
+            mobileNav.classList.contains("open")
+        ) {
+
+            closeMobileMenu();
 
         }
 
@@ -868,8 +1219,14 @@ document.addEventListener(
 );
 
 
-/* ==========================================
+/* =========================================================
    INITIALIZE
-========================================== */
+========================================================= */
 
-updateCart();
+loadCart();
+
+renderCart();
+
+applyFilters();
+
+handleNavbarScroll();
