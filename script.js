@@ -11,31 +11,40 @@
 const products = [
     {
         id: 1,
-        name: "Pashmina Beige / Nude Cream",
+        name: "Pashmina Nude Cream",
         price: 55000,
         image: "images/hijab1.jpeg",
         category: "pashmina",
         categoryName: "Pashmina Collection",
-        badge: "Best Seller"
+        badge: "Best Seller",
+        description:
+            "Pashmina dengan warna nude cream yang lembut, elegan, dan mudah dipadukan untuk berbagai gaya."
     },
+
     {
         id: 2,
-        name: "Pashmina Hitam / Black",
+        name: "Pashmina Black",
         price: 55000,
         image: "images/hijab2.jpeg",
         category: "pashmina",
         categoryName: "Pashmina Collection",
-        badge: "New"
+        badge: "New",
+        description:
+            "Pashmina hitam dengan warna klasik dan versatile untuk tampilan yang simpel, elegan, dan timeless."
     },
+
     {
         id: 3,
-        name: "Pashmina Abu-Abu Muda / Light Grey",
+        name: "Pashmina Light Grey",
         price: 55000,
         image: "images/hijab3.jpeg",
         category: "pashmina",
         categoryName: "Pashmina Collection",
-        badge: ""
+        badge: "",
+        description:
+            "Pashmina abu-abu muda dengan tone soft dan modern yang cocok untuk tampilan minimalis."
     },
+
     {
         id: 4,
         name: "Pashmina Broken White",
@@ -43,8 +52,11 @@ const products = [
         image: "images/hijab4.jpeg",
         category: "pashmina",
         categoryName: "Pashmina Collection",
-        badge: ""
+        badge: "",
+        description:
+            "Pashmina broken white dengan nuansa off-white yang clean, lembut, dan timeless."
     },
+
     {
         id: 5,
         name: "Pashmina Muted Brown",
@@ -52,43 +64,57 @@ const products = [
         image: "images/hijab5.jpeg",
         category: "pashmina",
         categoryName: "Pashmina Collection",
-        badge: "Premium"
+        badge: "Premium",
+        description:
+            "Pashmina muted brown dengan warna cokelat lembut yang memberikan kesan hangat dan sophisticated."
     },
+
     {
         id: 6,
-        name: "Pashmina Coklat Muda / Taupe",
+        name: "Pashmina Taupe",
         price: 55000,
         image: "images/hijab6.jpeg",
         category: "pashmina",
         categoryName: "Pashmina Collection",
-        badge: "New"
+        badge: "New",
+        description:
+            "Pashmina taupe dengan warna coklat muda yang netral dan mudah dipadukan dengan berbagai outfit."
     },
+
     {
         id: 7,
-        name: "Pashmina Lilac muda / Soft Purple",
+        name: "Pashmina Soft Purple",
         price: 55000,
         image: "images/hijab7.jpeg",
         category: "pashmina",
         categoryName: "Pashmina Collection",
-        badge: ""
+        badge: "",
+        description:
+            "Pashmina lilac muda dengan sentuhan soft purple yang memberikan kesan feminin dan elegan."
     },
+
     {
         id: 8,
-        name: "Pashmina Khaki / Cream Muda",
+        name: "Pashmina Khaki",
         price: 55000,
         image: "images/hijab8.jpeg",
         category: "pashmina",
         categoryName: "Pashmina Collection",
-        badge: ""
+        badge: "",
+        description:
+            "Pashmina khaki dengan tone cream muda yang natural, lembut, dan versatile untuk berbagai gaya."
     },
+
     {
         id: 9,
-        name: "Pashmina Cokelat Tua / Dark Brown",
+        name: "Pashmina Dark Brown",
         price: 55000,
         image: "images/hijab9.jpeg",
         category: "pashmina",
         categoryName: "Pashmina Collection",
-        badge: "Premium"
+        badge: "Premium",
+        description:
+            "Pashmina cokelat tua dengan warna deep yang hangat dan elegan untuk tampilan yang lebih sophisticated."
     }
 ];
 
@@ -125,19 +151,38 @@ const searchClose = document.getElementById("searchClose");
 const menuToggle = document.getElementById("menuToggle");
 const mobileNav = document.getElementById("mobileNav");
 
-const filterButtons = document.querySelectorAll(".filter-btn");
-const productCards = document.querySelectorAll(".product-card");
-const noResults = document.getElementById("noResults");
+const filterButtons =
+    document.querySelectorAll(".filter-btn");
 
-const cartToggle = document.getElementById("cartToggle");
-const cartOverlay = document.getElementById("cartOverlay");
-const cartSidebar = document.getElementById("cartSidebar");
-const cartClose = document.getElementById("cartClose");
+const productCards =
+    document.querySelectorAll(".product-card");
 
-const cartItems = document.getElementById("cartItems");
-const cartEmpty = document.getElementById("cartEmpty");
-const cartTotal = document.getElementById("cartTotal");
-const cartCount = document.getElementById("cartCount");
+const noResults =
+    document.getElementById("noResults");
+
+const cartToggle =
+    document.getElementById("cartToggle");
+
+const cartOverlay =
+    document.getElementById("cartOverlay");
+
+const cartSidebar =
+    document.getElementById("cartSidebar");
+
+const cartClose =
+    document.getElementById("cartClose");
+
+const cartItems =
+    document.getElementById("cartItems");
+
+const cartEmpty =
+    document.getElementById("cartEmpty");
+
+const cartTotal =
+    document.getElementById("cartTotal");
+
+const cartCount =
+    document.getElementById("cartCount");
 
 const continueShopping =
     document.getElementById("continueShopping");
@@ -196,21 +241,36 @@ const toastMessage =
    HELPER FUNCTIONS
 ========================================================= */
 
+/*
+   Format harga Indonesia.
+
+   Hasil:
+   55000
+   menjadi:
+   Rp. 55.000
+*/
+
 function formatPrice(price) {
-    return new Intl.NumberFormat("id-ID", {
-        style: "currency",
-        currency: "IDR",
-        minimumFractionDigits: 0
-    }).format(price);
+    return "Rp. " + Number(price).toLocaleString("id-ID");
 }
 
+
+/*
+   Mengambil data produk berdasarkan ID.
+*/
 
 function getProduct(productId) {
     return products.find(
-        (product) => product.id === Number(productId)
+        (product) =>
+            product.id === Number(productId)
     );
 }
 
+
+/*
+   Mencegah HTML injection ketika data dimasukkan
+   menggunakan innerHTML.
+*/
 
 function escapeHTML(value) {
     return String(value)
@@ -232,7 +292,8 @@ function loadCart() {
             localStorage.getItem(CART_STORAGE_KEY);
 
         if (savedCart) {
-            const parsedCart = JSON.parse(savedCart);
+            const parsedCart =
+                JSON.parse(savedCart);
 
             if (Array.isArray(parsedCart)) {
                 cart = parsedCart;
@@ -268,31 +329,63 @@ function saveCart() {
    CART
 ========================================================= */
 
-function addToCart(productId, color = "", quantity = 1) {
-    const product = getProduct(productId);
+function addToCart(
+    productId,
+    color = "",
+    quantity = 1
+) {
+    const product =
+        getProduct(productId);
 
     if (!product) {
         return;
     }
 
-    const existingItem = cart.find(
-        (item) =>
-            Number(item.productId) === Number(productId) &&
-            item.color === color
-    );
+
+    /*
+       Jika warna tidak dipilih,
+       gunakan "Belum dipilih".
+    */
+
+    const selectedColor =
+        color || "Belum dipilih";
+
+
+    /*
+       Cari apakah produk dengan warna yang sama
+       sudah ada di shopping bag.
+    */
+
+    const existingItem =
+        cart.find(
+            (item) =>
+                Number(item.productId) ===
+                    Number(productId) &&
+                (item.color || "Belum dipilih") ===
+                    selectedColor
+        );
+
 
     if (existingItem) {
-        existingItem.quantity += quantity;
+
+        existingItem.quantity +=
+            Number(quantity);
+
     } else {
+
         cart.push({
             productId: product.id,
-            color: color || product.color || "Belum dipilih",
-            quantity: quantity
+            color: selectedColor,
+            quantity: Number(quantity)
         });
+
     }
 
+
     saveCart();
+
     renderCart();
+
 
     showToast(
         `${product.name} ditambahkan ke shopping bag.`
@@ -300,67 +393,118 @@ function addToCart(productId, color = "", quantity = 1) {
 }
 
 
-function changeCartQuantity(index, amount) {
+/*
+   Mengubah jumlah produk dalam cart.
+*/
+
+function changeCartQuantity(
+    index,
+    amount
+) {
     if (!cart[index]) {
         return;
     }
 
-    cart[index].quantity += amount;
+
+    cart[index].quantity =
+        Number(cart[index].quantity || 0) +
+        Number(amount);
+
+
+    /*
+       Jika jumlah menjadi 0,
+       hapus produk dari cart.
+    */
 
     if (cart[index].quantity <= 0) {
         cart.splice(index, 1);
     }
 
+
     saveCart();
+
     renderCart();
 }
 
 
+/*
+   Menghapus produk dari cart.
+*/
+
 function removeFromCart(index) {
+
     if (!cart[index]) {
         return;
     }
 
-    const product = getProduct(
-        cart[index].productId
-    );
+
+    const product =
+        getProduct(
+            cart[index].productId
+        );
+
 
     cart.splice(index, 1);
 
     saveCart();
+
     renderCart();
 
+
     if (product) {
+
         showToast(
             `${product.name} dihapus dari shopping bag.`
         );
+
     }
 }
 
 
+/*
+   Menghitung jumlah seluruh item.
+*/
+
 function getCartCount() {
+
     return cart.reduce(
-        (total, item) => total + Number(item.quantity || 0),
+        (total, item) =>
+            total +
+            Number(item.quantity || 0),
         0
     );
+
 }
 
 
+/*
+   Menghitung total harga seluruh item.
+*/
+
 function getCartTotal() {
-    return cart.reduce((total, item) => {
 
-        const product =
-            getProduct(item.productId);
+    return cart.reduce(
+        (total, item) => {
 
-        if (!product) {
-            return total;
-        }
+            const product =
+                getProduct(item.productId);
 
-        return total +
-            product.price *
-            Number(item.quantity || 0);
 
-    }, 0);
+            if (!product) {
+                return total;
+            }
+
+
+            return (
+                total +
+                product.price *
+                    Number(item.quantity || 0)
+            );
+
+        },
+        0
+    );
+
 }
 
 
@@ -374,130 +518,197 @@ function renderCart() {
         return;
     }
 
+
     cartItems.innerHTML = "";
+
+
+    /*
+       Jika shopping bag kosong.
+    */
 
     if (cart.length === 0) {
 
-        cartEmpty.classList.add("show");
+        if (cartEmpty) {
+            cartEmpty.classList.add("show");
+        }
 
-        cartTotal.textContent = "Rp0";
-        cartCount.textContent = "0";
 
-        checkoutBtn.disabled = true;
-        checkoutBtn.style.opacity = "0.5";
-        checkoutBtn.style.pointerEvents = "none";
+        if (cartTotal) {
+            cartTotal.textContent =
+                formatPrice(0);
+        }
+
+
+        if (cartCount) {
+            cartCount.textContent = "0";
+        }
+
+
+        if (checkoutBtn) {
+
+            checkoutBtn.disabled = true;
+
+            checkoutBtn.style.opacity = "0.5";
+
+            checkoutBtn.style.pointerEvents =
+                "none";
+
+        }
+
 
         return;
     }
 
 
-    cartEmpty.classList.remove("show");
+    /*
+       Shopping bag tidak kosong.
+    */
 
-    checkoutBtn.disabled = false;
-    checkoutBtn.style.opacity = "1";
-    checkoutBtn.style.pointerEvents = "auto";
-
-
-    cart.forEach((item, index) => {
-
-        const product =
-            getProduct(item.productId);
-
-        if (!product) {
-            return;
-        }
+    if (cartEmpty) {
+        cartEmpty.classList.remove("show");
+    }
 
 
-        const itemTotal =
-            product.price *
-            Number(item.quantity || 0);
+    if (checkoutBtn) {
+
+        checkoutBtn.disabled = false;
+
+        checkoutBtn.style.opacity = "1";
+
+        checkoutBtn.style.pointerEvents =
+            "auto";
+
+    }
 
 
-        const cartItem =
-            document.createElement("div");
+    /*
+       Render setiap item.
+    */
 
-        cartItem.className = "cart-item";
+    cart.forEach(
+        (item, index) => {
+
+            const product =
+                getProduct(item.productId);
 
 
-        cartItem.innerHTML = `
-            <div class="cart-item-image">
-                <img
-                    src="${escapeHTML(product.image)}"
-                    alt="${escapeHTML(product.name)}"
-                >
-            </div>
+            if (!product) {
+                return;
+            }
 
-            <div class="cart-item-info">
 
-                <p class="cart-item-category">
-                    ${escapeHTML(product.categoryName)}
-                </p>
+            const itemTotal =
+                product.price *
+                Number(item.quantity || 0);
 
-                <h3 class="cart-item-name">
-                    ${escapeHTML(product.name)}
-                </h3>
 
-                <p class="cart-item-color">
-                    Color: ${escapeHTML(item.color || "Belum dipilih")}
-                </p>
+            const cartItem =
+                document.createElement("div");
 
-                <div class="cart-item-bottom">
 
-                    <strong class="cart-item-price">
-                        ${formatPrice(itemTotal)}
-                    </strong>
+            cartItem.className =
+                "cart-item";
 
-                    <div class="cart-quantity">
+
+            cartItem.innerHTML = `
+                <div class="cart-item-image">
+                    <img
+                        src="${escapeHTML(product.image)}"
+                        alt="${escapeHTML(product.name)}"
+                    >
+                </div>
+
+                <div class="cart-item-info">
+
+                    <p class="cart-item-category">
+                        ${escapeHTML(product.categoryName)}
+                    </p>
+
+                    <h3 class="cart-item-name">
+                        ${escapeHTML(product.name)}
+                    </h3>
+
+                    <p class="cart-item-color">
+                        Color:
+                        ${escapeHTML(
+                            item.color ||
+                            "Belum dipilih"
+                        )}
+                    </p>
+
+                    <div class="cart-item-bottom">
+
+                        <strong class="cart-item-price">
+                            ${formatPrice(itemTotal)}
+                        </strong>
+
+                        <div class="cart-quantity">
+
+                            <button
+                                type="button"
+                                data-action="decrease"
+                                data-index="${index}"
+                                aria-label="Kurangi jumlah"
+                            >
+                                −
+                            </button>
+
+                            <span>
+                                ${Number(
+                                    item.quantity || 0
+                                )}
+                            </span>
+
+                            <button
+                                type="button"
+                                data-action="increase"
+                                data-index="${index}"
+                                aria-label="Tambah jumlah"
+                            >
+                                +
+                            </button>
+
+                        </div>
 
                         <button
                             type="button"
-                            data-action="decrease"
+                            class="cart-remove"
+                            data-action="remove"
                             data-index="${index}"
-                            aria-label="Kurangi jumlah"
+                            aria-label="Hapus produk"
                         >
-                            −
-                        </button>
-
-                        <span>
-                            ${Number(item.quantity || 0)}
-                        </span>
-
-                        <button
-                            type="button"
-                            data-action="increase"
-                            data-index="${index}"
-                            aria-label="Tambah jumlah"
-                        >
-                            +
+                            <i class="fa-solid fa-trash"></i>
                         </button>
 
                     </div>
 
-                    <button
-                        type="button"
-                        class="cart-remove"
-                        data-action="remove"
-                        data-index="${index}"
-                        aria-label="Hapus produk"
-                    >
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-
                 </div>
-
-            </div>
-        `;
+            `;
 
 
-        cartItems.appendChild(cartItem);
-    });
+            cartItems.appendChild(cartItem);
+
+        }
+    );
 
 
-    cartTotal.textContent =
-        formatPrice(getCartTotal());
+    /*
+       Update total dan jumlah cart.
+    */
 
-    cartCount.textContent =
-        getCartCount();
+    if (cartTotal) {
+        cartTotal.textContent =
+            formatPrice(
+                getCartTotal()
+            );
+    }
+
+
+    if (cartCount) {
+        cartCount.textContent =
+            getCartCount();
+    }
+
 }
 
 
@@ -514,29 +725,44 @@ if (cartItems) {
             const button =
                 event.target.closest("button");
 
+
             if (!button) {
                 return;
             }
 
+
             const action =
                 button.dataset.action;
+
 
             const index =
                 Number(button.dataset.index);
 
 
             if (action === "increase") {
-                changeCartQuantity(index, 1);
+
+                changeCartQuantity(
+                    index,
+                    1
+                );
+
             }
 
 
             if (action === "decrease") {
-                changeCartQuantity(index, -1);
+
+                changeCartQuantity(
+                    index,
+                    -1
+                );
+
             }
 
 
             if (action === "remove") {
+
                 removeFromCart(index);
+
             }
 
         }
@@ -551,43 +777,67 @@ if (cartItems) {
 
 function openCart() {
 
+    if (!cartSidebar || !cartOverlay) {
+        return;
+    }
+
+
     cartSidebar.classList.add("open");
+
     cartOverlay.classList.add("open");
 
-    document.body.classList.add("no-scroll");
+    document.body.classList.add(
+        "no-scroll"
+    );
+
 }
 
 
 function closeCart() {
 
+    if (!cartSidebar || !cartOverlay) {
+        return;
+    }
+
+
     cartSidebar.classList.remove("open");
+
     cartOverlay.classList.remove("open");
 
-    document.body.classList.remove("no-scroll");
+    document.body.classList.remove(
+        "no-scroll"
+    );
+
 }
 
 
 if (cartToggle) {
+
     cartToggle.addEventListener(
         "click",
         openCart
     );
+
 }
 
 
 if (cartClose) {
+
     cartClose.addEventListener(
         "click",
         closeCart
     );
+
 }
 
 
 if (cartOverlay) {
+
     cartOverlay.addEventListener(
         "click",
         closeCart
     );
+
 }
 
 
@@ -605,32 +855,43 @@ if (continueShopping) {
    QUICK ADD
 ========================================================= */
 
-document.querySelectorAll(".quick-add").forEach(
-    (button) => {
+document
+    .querySelectorAll(".quick-add")
+    .forEach(
+        (button) => {
 
-        button.addEventListener(
-            "click",
-            (event) => {
+            button.addEventListener(
+                "click",
+                (event) => {
 
-                event.stopPropagation();
+                    event.stopPropagation();
 
-                const productId =
-                    Number(
-                        button.dataset.productId
+
+                    const productId =
+                        Number(
+                            button.dataset.productId
+                        );
+
+
+                    /*
+                       Quick Add langsung menambahkan
+                       produk dengan warna "Belum dipilih".
+                    */
+
+                    addToCart(
+                        productId,
+                        "",
+                        1
                     );
 
-                addToCart(
-                    productId,
-                    "",
-                    1
-                );
 
-                openCart();
-            }
-        );
+                    openCart();
 
-    }
-);
+                }
+            );
+
+        }
+    );
 
 
 /* =========================================================
@@ -647,6 +908,7 @@ function applyFilters() {
 
             const category =
                 card.dataset.category || "";
+
 
             const name =
                 card.dataset.name || "";
@@ -671,7 +933,9 @@ function applyFilters() {
 
 
             card.style.display =
-                shouldShow ? "" : "none";
+                shouldShow
+                    ? ""
+                    : "none";
 
 
             if (shouldShow) {
@@ -694,7 +958,10 @@ function applyFilters() {
 }
 
 
-/* FILTER BUTTON */
+/* =========================================================
+   FILTER BUTTON
+========================================================= */
+
 filterButtons.forEach(
     (button) => {
 
@@ -702,17 +969,31 @@ filterButtons.forEach(
             "click",
             () => {
 
+                /*
+                   Hapus active dari semua button.
+                */
+
                 filterButtons.forEach(
                     (btn) =>
-                        btn.classList.remove("active")
+                        btn.classList.remove(
+                            "active"
+                        )
                 );
 
 
-                button.classList.add("active");
+                /*
+                   Tambahkan active ke button
+                   yang dipilih.
+                */
+
+                button.classList.add(
+                    "active"
+                );
 
 
                 currentFilter =
-                    button.dataset.filter || "all";
+                    button.dataset.filter ||
+                    "all";
 
 
                 applyFilters();
@@ -730,7 +1011,13 @@ filterButtons.forEach(
 
 function openSearch() {
 
+    if (!searchPanel) {
+        return;
+    }
+
+
     searchPanel.classList.add("open");
+
 
     setTimeout(
         () => {
@@ -742,12 +1029,21 @@ function openSearch() {
         },
         150
     );
+
 }
 
 
 function closeSearch() {
 
-    searchPanel.classList.remove("open");
+    if (!searchPanel) {
+        return;
+    }
+
+
+    searchPanel.classList.remove(
+        "open"
+    );
+
 }
 
 
@@ -758,11 +1054,18 @@ if (searchToggle) {
         () => {
 
             if (
-                searchPanel.classList.contains("open")
+                searchPanel &&
+                searchPanel.classList.contains(
+                    "open"
+                )
             ) {
+
                 closeSearch();
+
             } else {
+
                 openSearch();
+
             }
 
         }
@@ -790,6 +1093,7 @@ if (searchInput) {
             currentSearch =
                 event.target.value.trim();
 
+
             applyFilters();
 
         }
@@ -803,7 +1107,16 @@ if (searchInput) {
 ========================================================= */
 
 function closeMobileMenu() {
-    mobileNav.classList.remove("open");
+
+    if (!mobileNav) {
+        return;
+    }
+
+
+    mobileNav.classList.remove(
+        "open"
+    );
+
 }
 
 
@@ -813,7 +1126,14 @@ if (menuToggle) {
         "click",
         () => {
 
-            mobileNav.classList.toggle("open");
+            if (!mobileNav) {
+                return;
+            }
+
+
+            mobileNav.classList.toggle(
+                "open"
+            );
 
         }
     );
@@ -848,74 +1168,164 @@ function openProductModal(productId) {
     const product =
         getProduct(productId);
 
+
     if (!product) {
         return;
     }
 
 
+    /*
+       Reset state modal.
+    */
+
     selectedProductId =
         product.id;
 
-    selectedProductColor = "";
-    selectedProductQuantity = 1;
+    selectedProductColor =
+        "";
+
+    selectedProductQuantity =
+        1;
 
 
-    modalProductImage.src =
-        product.image;
+    /*
+       Isi informasi produk.
+    */
 
-    modalProductImage.alt =
-        product.name;
+    if (modalProductImage) {
 
+        modalProductImage.src =
+            product.image;
 
-    modalProductCategory.textContent =
-        product.categoryName;
+        modalProductImage.alt =
+            product.name;
 
-
-    modalProductName.textContent =
-        product.name;
-
-
-    modalProductPrice.textContent =
-        formatPrice(product.price);
+    }
 
 
-    modalProductDescription.textContent =
-        product.description;
+    if (modalProductCategory) {
+
+        modalProductCategory.textContent =
+            product.categoryName;
+
+    }
 
 
-    modalQuantityElement.textContent =
-        "1";
+    if (modalProductName) {
+
+        modalProductName.textContent =
+            product.name;
+
+    }
 
 
-    selectedColorName.textContent =
-        "Belum dipilih";
+    if (modalProductPrice) {
+
+        modalProductPrice.textContent =
+            formatPrice(
+                product.price
+            );
+
+    }
 
 
-    colorOptions
-        .querySelectorAll(".color-swatch")
-        .forEach(
-            (swatch) => {
+    if (modalProductDescription) {
 
-                swatch.classList.remove("active");
+        modalProductDescription.textContent =
+            product.description ||
+            "Pashmina dengan desain elegan dan mudah dipadukan dengan berbagai outfit.";
 
-            }
+    }
+
+
+    /*
+       Reset quantity.
+    */
+
+    if (modalQuantityElement) {
+
+        modalQuantityElement.textContent =
+            "1";
+
+    }
+
+
+    /*
+       Reset pilihan warna.
+    */
+
+    if (selectedColorName) {
+
+        selectedColorName.textContent =
+            "Belum dipilih";
+
+    }
+
+
+    if (colorOptions) {
+
+        colorOptions
+            .querySelectorAll(
+                ".color-swatch"
+            )
+            .forEach(
+                (swatch) => {
+
+                    swatch.classList.remove(
+                        "active"
+                    );
+
+                }
+            );
+
+    }
+
+
+    /*
+       Tampilkan modal.
+    */
+
+    if (productModalOverlay) {
+
+        productModalOverlay.classList.add(
+            "open"
         );
 
+        document.body.classList.add(
+            "no-scroll"
+        );
 
-    productModalOverlay.classList.add("open");
+    }
 
-    document.body.classList.add("no-scroll");
 }
 
 
 function closeProductModal() {
 
-    productModalOverlay.classList.remove("open");
+    if (!productModalOverlay) {
+        return;
+    }
 
-    document.body.classList.remove("no-scroll");
+
+    productModalOverlay.classList.remove(
+        "open"
+    );
+
+
+    /*
+       Jangan mengunci halaman setelah modal ditutup.
+    */
+
+    document.body.classList.remove(
+        "no-scroll"
+    );
 
 }
 
+
+/*
+   Klik product card membuka modal.
+*/
 
 productCards.forEach(
     (card) => {
@@ -925,9 +1335,14 @@ productCards.forEach(
             () => {
 
                 const productId =
-                    Number(card.dataset.id);
+                    Number(
+                        card.dataset.id
+                    );
 
-                openProductModal(productId);
+
+                openProductModal(
+                    productId
+                );
 
             }
         );
@@ -936,7 +1351,10 @@ productCards.forEach(
 );
 
 
-/* MODAL CLOSE */
+/* =========================================================
+   MODAL CLOSE
+========================================================= */
+
 if (modalClose) {
 
     modalClose.addEventListener(
@@ -957,7 +1375,9 @@ if (productModalOverlay) {
                 event.target ===
                 productModalOverlay
             ) {
+
                 closeProductModal();
+
             }
 
         }
@@ -973,13 +1393,20 @@ if (productModalOverlay) {
 if (colorOptions) {
 
     colorOptions
-        .querySelectorAll(".color-swatch")
+        .querySelectorAll(
+            ".color-swatch"
+        )
         .forEach(
             (swatch) => {
 
                 swatch.addEventListener(
                     "click",
                     () => {
+
+                        /*
+                           Hapus active dari semua
+                           pilihan warna.
+                        */
 
                         colorOptions
                             .querySelectorAll(
@@ -993,15 +1420,31 @@ if (colorOptions) {
                             );
 
 
-                        swatch.classList.add("active");
+                        /*
+                           Aktifkan warna yang dipilih.
+                        */
+
+                        swatch.classList.add(
+                            "active"
+                        );
 
 
                         selectedProductColor =
-                            swatch.dataset.color || "";
+                            swatch.dataset.color ||
+                            "";
 
 
-                        selectedColorName.textContent =
-                            selectedProductColor;
+                        /*
+                           Tampilkan nama warna.
+                        */
+
+                        if (selectedColorName) {
+
+                            selectedColorName.textContent =
+                                selectedProductColor ||
+                                "Belum dipilih";
+
+                        }
 
                     }
                 );
@@ -1018,8 +1461,14 @@ if (colorOptions) {
 
 function updateModalQuantity() {
 
+    if (!modalQuantityElement) {
+        return;
+    }
+
+
     modalQuantityElement.textContent =
         selectedProductQuantity;
+
 }
 
 
@@ -1082,6 +1531,11 @@ if (modalAddToBag) {
             }
 
 
+            /*
+               Warna wajib dipilih
+               sebelum produk masuk ke bag.
+            */
+
             if (!selectedProductColor) {
 
                 showToast(
@@ -1115,6 +1569,10 @@ if (modalAddToBag) {
 
 function checkoutViaWhatsApp() {
 
+    /*
+       Cek apakah shopping bag kosong.
+    */
+
     if (cart.length === 0) {
 
         showToast(
@@ -1125,58 +1583,104 @@ function checkoutViaWhatsApp() {
     }
 
 
+    /*
+       Buat pesan WhatsApp.
+    */
+
     let message =
-        "Halo Flawsome Kyta by.NR,%0A%0A";
+        "Halo Flawsome Kyta by.NR,\n\n";
 
     message +=
-        "Saya ingin melakukan pemesanan:%0A%0A";
+        "Saya ingin melakukan pemesanan:\n\n";
 
+
+    /*
+       Masukkan semua produk ke pesan.
+    */
 
     cart.forEach(
         (item, index) => {
 
             const product =
-                getProduct(item.productId);
+                getProduct(
+                    item.productId
+                );
+
 
             if (!product) {
                 return;
             }
 
 
+            const quantity =
+                Number(
+                    item.quantity || 0
+                );
+
+
             const subtotal =
                 product.price *
-                Number(item.quantity || 0);
+                quantity;
 
 
             message +=
-                `${index + 1}. ${product.name}%0A`;
+                `${index + 1}. ${product.name}\n`;
 
             message +=
-                `   Warna: ${item.color || "Belum dipilih"}%0A`;
+                `   Warna: ${
+                    item.color ||
+                    "Belum dipilih"
+                }\n`;
 
             message +=
-                `   Jumlah: ${item.quantity}%0A`;
+                `   Jumlah: ${quantity}\n`;
 
             message +=
-                `   Subtotal: ${formatPrice(subtotal)}%0A%0A`;
+                `   Subtotal: ${
+                    formatPrice(subtotal)
+                }\n\n`;
 
         }
     );
 
 
-    message +=
-        `Total: ${formatPrice(getCartTotal())}%0A%0A`;
+    /*
+       Total pesanan.
+    */
 
     message +=
-        "Mohon konfirmasi ketersediaan produk, warna, dan detail pengiriman.%0A%0A";
+        `Total: ${
+            formatPrice(
+                getCartTotal()
+            )
+        }\n\n`;
+
+
+    /*
+       Pesan penutup.
+    */
+
+    message +=
+        "Mohon konfirmasi ketersediaan produk, warna, dan detail pengiriman.\n\n";
 
     message +=
         "Terima kasih.";
 
 
-    const whatsappURL =
-        `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+    /*
+       Encode pesan agar aman digunakan
+       sebagai query parameter WhatsApp.
+    */
 
+    const whatsappURL =
+        `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+            message
+        )}`;
+
+
+    /*
+       Buka WhatsApp pada tab baru.
+    */
 
     window.open(
         whatsappURL,
@@ -1212,17 +1716,23 @@ function showToast(message) {
         message;
 
 
-    toast.classList.add("show");
+    toast.classList.add(
+        "show"
+    );
 
 
-    clearTimeout(toastTimeout);
+    clearTimeout(
+        toastTimeout
+    );
 
 
     toastTimeout =
         setTimeout(
             () => {
 
-                toast.classList.remove("show");
+                toast.classList.remove(
+                    "show"
+                );
 
             },
             2500
@@ -1277,8 +1787,11 @@ document.addEventListener(
 
 
         closeSearch();
+
         closeMobileMenu();
+
         closeCart();
+
         closeProductModal();
 
     }
@@ -1302,19 +1815,27 @@ document.addEventListener(
 
 
         const clickedInsideSearch =
-            searchPanel.contains(event.target);
+            searchPanel.contains(
+                event.target
+            );
 
 
         const clickedSearchButton =
-            searchToggle.contains(event.target);
+            searchToggle.contains(
+                event.target
+            );
 
 
         if (
-            searchPanel.classList.contains("open") &&
+            searchPanel.classList.contains(
+                "open"
+            ) &&
             !clickedInsideSearch &&
             !clickedSearchButton
         ) {
+
             closeSearch();
+
         }
 
     }
@@ -1326,5 +1847,7 @@ document.addEventListener(
 ========================================================= */
 
 loadCart();
+
 renderCart();
+
 applyFilters();
