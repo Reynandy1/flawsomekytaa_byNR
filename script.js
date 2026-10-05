@@ -12,7 +12,7 @@ const products = [
     {
         id: 1,
         name: "Pashmina Nude Cream",
-        price: 55000,
+        price: 50000,
         image: "images/hijab1.jpeg",
         category: "pashmina",
         categoryName: "Pashmina Collection",
@@ -24,7 +24,7 @@ const products = [
     {
         id: 2,
         name: "Pashmina Black",
-        price: 55000,
+        price: 50000,
         image: "images/hijab2.jpeg",
         category: "pashmina",
         categoryName: "Pashmina Collection",
@@ -36,7 +36,7 @@ const products = [
     {
         id: 3,
         name: "Pashmina Light Grey",
-        price: 55000,
+        price: 50000,
         image: "images/hijab3.jpeg",
         category: "pashmina",
         categoryName: "Pashmina Collection",
@@ -48,7 +48,7 @@ const products = [
     {
         id: 4,
         name: "Pashmina Broken White",
-        price: 55000,
+        price: 50000,
         image: "images/hijab4.jpeg",
         category: "pashmina",
         categoryName: "Pashmina Collection",
@@ -60,7 +60,7 @@ const products = [
     {
         id: 5,
         name: "Pashmina Muted Brown",
-        price: 55000,
+        price: 50000,
         image: "images/hijab5.jpeg",
         category: "pashmina",
         categoryName: "Pashmina Collection",
@@ -72,7 +72,7 @@ const products = [
     {
         id: 6,
         name: "Pashmina Taupe",
-        price: 55000,
+        price: 50000,
         image: "images/hijab6.jpeg",
         category: "pashmina",
         categoryName: "Pashmina Collection",
@@ -84,7 +84,7 @@ const products = [
     {
         id: 7,
         name: "Pashmina Soft Purple",
-        price: 55000,
+        price: 50000,
         image: "images/hijab7.jpeg",
         category: "pashmina",
         categoryName: "Pashmina Collection",
@@ -96,7 +96,7 @@ const products = [
     {
         id: 8,
         name: "Pashmina Khaki",
-        price: 55000,
+        price: 50000,
         image: "images/hijab8.jpeg",
         category: "pashmina",
         categoryName: "Pashmina Collection",
@@ -108,7 +108,7 @@ const products = [
     {
         id: 9,
         name: "Pashmina Dark Brown",
-        price: 55000,
+        price: 50000,
         image: "images/hijab9.jpeg",
         category: "pashmina",
         categoryName: "Pashmina Collection",
